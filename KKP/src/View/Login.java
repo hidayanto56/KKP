@@ -43,8 +43,6 @@ public class Login extends javax.swing.JFrame {
         jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(345, 160));
-        setSize(new java.awt.Dimension(345, 160));
 
         jLabel1.setText("LOGIN");
 
@@ -115,8 +113,8 @@ public class Login extends javax.swing.JFrame {
                 .addGap(0, 64, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnOK)
-                        .addGap(80, 80, 80)
+                        .addComponent(btnOK, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(57, 57, 57)
                         .addComponent(btCancel)
                         .addGap(89, 89, 89))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
