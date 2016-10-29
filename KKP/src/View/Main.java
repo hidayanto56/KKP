@@ -34,6 +34,8 @@ public class Main extends javax.swing.JFrame {
 
         dpMain = new javax.swing.JDesktopPane();
         pnlStatus = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
         mbMenu = new javax.swing.JMenuBar();
         mnFile = new javax.swing.JMenu();
         miExit = new javax.swing.JMenuItem();
@@ -42,6 +44,7 @@ public class Main extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFont(new java.awt.Font("Vrinda", 0, 10)); // NOI18N
+        setPreferredSize(new java.awt.Dimension(1224, 700));
         setSize(new java.awt.Dimension(1200, 700));
 
         dpMain.setBackground(new java.awt.Color(34, 190, 234));
@@ -52,18 +55,49 @@ public class Main extends javax.swing.JFrame {
         pnlStatus.setLayout(pnlStatusLayout);
         pnlStatusLayout.setHorizontalGroup(
             pnlStatusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1200, Short.MAX_VALUE)
+            .addGap(0, 1224, Short.MAX_VALUE)
         );
         pnlStatusLayout.setVerticalGroup(
             pnlStatusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 24, Short.MAX_VALUE)
         );
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 60, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 442, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 1156, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout dpMainLayout = new javax.swing.GroupLayout(dpMain);
         dpMain.setLayout(dpMainLayout);
         dpMainLayout.setHorizontalGroup(
             dpMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1224, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dpMainLayout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
             .addGroup(dpMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(dpMainLayout.createSequentialGroup()
                     .addGap(0, 0, 0)
@@ -72,7 +106,10 @@ public class Main extends javax.swing.JFrame {
         );
         dpMainLayout.setVerticalGroup(
             dpMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 498, Short.MAX_VALUE)
+            .addGroup(dpMainLayout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(24, 24, 24))
             .addGroup(dpMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(dpMainLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -80,6 +117,7 @@ public class Main extends javax.swing.JFrame {
                     .addGap(0, 0, 0)))
         );
         dpMain.setLayer(pnlStatus, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        dpMain.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         mnFile.setMnemonic('f');
         mnFile.setText("File");
@@ -185,6 +223,8 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane dpMain;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JMenuBar mbMenu;
     private javax.swing.JMenuItem miExit;
     private javax.swing.JMenu mnAbout;
