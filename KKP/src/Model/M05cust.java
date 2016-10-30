@@ -17,7 +17,7 @@ public class M05cust {
     String kdcust;
     String nmcust;
     String alamat;
-    String kota;
+    String kota;  
     String telp;
     String keterangan;
     BigInteger version;

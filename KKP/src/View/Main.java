@@ -11,6 +11,9 @@ package View;
  */
 public class Main extends javax.swing.JFrame {
     About about;
+    M05custView m05view;
+    P01peruView p01view;
+    T01jualView t01viewjual;
 
     /**
      * Creates new form Main
@@ -21,6 +24,20 @@ public class Main extends javax.swing.JFrame {
         about = new About();
         dpMain.add(about);
         about.setVisible(false);
+        
+        m05view = new M05custView();
+        dpMain.add(m05view);
+        m05view.setVisible(false);
+        
+        p01view = new P01peruView();
+        dpMain.add(p01view);
+        p01view.setVisible(false);
+        
+        t01viewjual = new T01jualView();
+        dpMain.add(t01viewjual);
+        t01viewjual.setVisible(false);
+        
+        
     }
 
     /**
@@ -41,8 +58,13 @@ public class Main extends javax.swing.JFrame {
         miExit = new javax.swing.JMenuItem();
         mnEdit = new javax.swing.JMenu();
         mnAbout = new javax.swing.JMenu();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Sistem Distribusi");
         setFont(new java.awt.Font("Vrinda", 0, 10)); // NOI18N
         setPreferredSize(new java.awt.Dimension(1224, 700));
         setSize(new java.awt.Dimension(1200, 700));
@@ -153,6 +175,34 @@ public class Main extends javax.swing.JFrame {
         });
         mbMenu.add(mnAbout);
 
+        jMenu1.setText("jMenu1");
+
+        jMenuItem1.setText("jMenuItem1");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem2.setText("jMenuItem2");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
+
+        jMenuItem3.setText("jMenuItem3");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem3);
+
+        mbMenu.add(jMenu1);
+
         setJMenuBar(mbMenu);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -186,6 +236,19 @@ public class Main extends javax.swing.JFrame {
        about.setVisible(true);
     }//GEN-LAST:event_mnAboutMouseClicked
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+       m05view.setVisible(true);
+        
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        p01view.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        t01viewjual.setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -197,7 +260,7 @@ public class Main extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -223,6 +286,10 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane dpMain;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JMenuBar mbMenu;

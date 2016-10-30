@@ -21,7 +21,7 @@ public class P01peru {
     String telp2;
     String email;
     String npwp;
-    String kdsiup;
+    String siup;
     BigInteger version;
     String created_by;
     Date created_on;
@@ -109,12 +109,12 @@ public class P01peru {
         this.npwp = npwp;
     }
 
-    public String getKdsiup() {
-        return kdsiup;
+    public String getSiup() {
+        return siup;
     }
 
-    public void setKdsiup(String kdsiup) {
-        this.kdsiup = kdsiup;
+    public void setSiup(String siup) {
+        this.siup = siup;
     }
 
     public BigInteger getVersion() {
@@ -157,6 +157,5 @@ public class P01peru {
         this.updated_on = updated_on;
     }
 
-    
     
 }
