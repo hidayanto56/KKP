@@ -44,9 +44,11 @@ CREATE TABLE `m01pega` (
   UNIQUE KEY `nik` (`nik`),
   KEY `m02_id` (`m02_id`),
   CONSTRAINT `m02_id` FOREIGN KEY (`m02_id`) REFERENCES `m02jaba` (`m02_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `m01pega` */
+
+insert  into `m01pega`(`m01_id`,`nik`,`nama`,`username`,`password`,`gender`,`status`,`telepon`,`alamat`,`agama`,`tgllahir`,`email`,`tglmasuk`,`m02_id`,`version`,`created_by`,`created_on`,`updated_by`,`updated_on`) values (1,'A001','Admiin','admin','admin','L',NULL,'08083754',NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `m02jaba` */
 
@@ -64,9 +66,11 @@ CREATE TABLE `m02jaba` (
   `updated_on` datetime DEFAULT NULL,
   PRIMARY KEY (`m02_id`,`kdjab`),
   UNIQUE KEY `kdjab` (`kdjab`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin2;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin2;
 
 /*Data for the table `m02jaba` */
+
+insert  into `m02jaba`(`m02_id`,`kdjab`,`nmjab`,`keterangan`,`version`,`created_by`,`created_on`,`updated_by`,`updated_on`) values (1,'A01','admin','admin',1,NULL,NULL,NULL,NULL),(2,'M02','Manager','Manager',1,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `m03tabu` */
 
