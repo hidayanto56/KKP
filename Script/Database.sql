@@ -171,7 +171,7 @@ insert  into `p01peru`(`kdperu`,`nmperu`,`alamat`,`kota`,`telp1`,`telp2`,`email`
 DROP TABLE IF EXISTS `t01jual`;
 
 CREATE TABLE `t01jual` (
-  `t01_id` bigint(20) NOT NULL,
+  `t01_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `tanggal` date NOT NULL,
   `m03_id` bigint(20) NOT NULL,
   `m05_id` bigint(20) NOT NULL,
@@ -187,9 +187,11 @@ CREATE TABLE `t01jual` (
   KEY `m05_id` (`m05_id`),
   CONSTRAINT `m03_id` FOREIGN KEY (`m03_id`) REFERENCES `m03tabu` (`m03_id`),
   CONSTRAINT `m05_id` FOREIGN KEY (`m05_id`) REFERENCES `m05cust` (`m05_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `t01jual` */
+
+insert  into `t01jual`(`t01_id`,`tanggal`,`m03_id`,`m05_id`,`jumlah`,`keterangan`,`version`,`created_by`,`created_on`,`updated_by`,`updated_on`) values (1,'2016-10-31',1,1,'80','tanpa keterangan',1,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `t02beli` */
 

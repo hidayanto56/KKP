@@ -67,12 +67,16 @@
 			</line>
 			<staticText>
 				<reportElement x="0" y="2" width="100" height="20" uuid="da98005b-f5c7-4b8a-9789-2e06f111089c"/>
-				<textElement verticalAlignment="Middle"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
 				<text><![CDATA[LIST CUSTOMER]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="455" y="2" width="100" height="20" uuid="0c0647bc-9d18-4d4b-8233-63c2dcc42fc2"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$V{today}]]></textFieldExpression>
 			</textField>
 		</band>
@@ -82,42 +86,42 @@
 			<staticText>
 				<reportElement x="0" y="2" width="63" height="20" uuid="2714aa41-f4cf-4216-979e-a68a3fe073ca"/>
 				<textElement verticalAlignment="Middle">
-					<font size="9"/>
+					<font size="8"/>
 				</textElement>
 				<text><![CDATA[Kode]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="63" y="2" width="100" height="20" uuid="027c9643-3b4b-420f-b322-ac65b29d05c6"/>
 				<textElement verticalAlignment="Middle">
-					<font size="9"/>
+					<font size="8"/>
 				</textElement>
 				<text><![CDATA[Nama Customer]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="163" y="2" width="140" height="20" uuid="67dc7b01-2e55-485f-b45c-17df8f965afb"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="SansSerif" size="9"/>
+					<font fontName="SansSerif" size="8"/>
 				</textElement>
 				<text><![CDATA[Alamat]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="303" y="2" width="79" height="20" uuid="05a8fb88-3dbd-4d1c-89bd-b2753f1cfe4c"/>
 				<textElement verticalAlignment="Middle">
-					<font size="9"/>
+					<font size="8"/>
 				</textElement>
 				<text><![CDATA[Kota]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="382" y="2" width="73" height="20" uuid="a573a002-a9e2-4e01-968e-00eeb1e06915"/>
 				<textElement verticalAlignment="Middle">
-					<font size="9"/>
+					<font size="8"/>
 				</textElement>
 				<text><![CDATA[Telp]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="455" y="2" width="100" height="20" uuid="f4c56bc2-f8b0-4e09-bdc7-e9587a8eb4dc"/>
 				<textElement verticalAlignment="Middle">
-					<font size="9"/>
+					<font size="8"/>
 				</textElement>
 				<text><![CDATA[Keterangan]]></text>
 			</staticText>
@@ -131,54 +135,58 @@
 			<textField>
 				<reportElement x="0" y="0" width="63" height="20" uuid="ad5612b4-e86a-42ca-b2a6-705251acfacd"/>
 				<textElement verticalAlignment="Middle" markup="none">
-					<font size="9"/>
+					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{kdcust}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="303" y="0" width="79" height="20" uuid="03373c18-a105-4eb6-b33a-c64d0c5ada0f"/>
 				<textElement verticalAlignment="Middle" markup="none">
-					<font size="9"/>
+					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{kota}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="63" y="0" width="100" height="20" uuid="7b7a83e0-d15c-4d06-84b6-7006d899999e"/>
 				<textElement verticalAlignment="Middle" markup="none">
-					<font size="9"/>
+					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nmcust}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="163" y="0" width="140" height="20" uuid="dc05b170-15f1-4cd3-a638-8a7719488daa"/>
 				<textElement verticalAlignment="Middle" markup="none">
-					<font size="9"/>
+					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{alamat}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="382" y="0" width="73" height="20" uuid="1fda67d3-fbe6-49c4-a65e-a025b6270af0"/>
 				<textElement verticalAlignment="Middle" markup="none">
-					<font size="9"/>
+					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{telp}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="455" y="0" width="100" height="20" uuid="41d71a9b-4e9a-46d0-b7e3-4829b6d73ae4"/>
 				<textElement verticalAlignment="Middle">
-					<font size="9"/>
+					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{keterangan}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="24" splitType="Stretch"/>
+		<band height="7" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="0" width="555" height="1" uuid="199b6b35-0d6f-4a3f-b876-e580301550e2"/>
+			</line>
+		</band>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="10" splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band height="9" splitType="Stretch"/>
 	</summary>
 </jasperReport>
