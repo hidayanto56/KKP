@@ -6,16 +6,26 @@
 package Control;
 
 import Model.T01jual;
+import java.io.File;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -119,32 +129,32 @@ public class T01jualCtrl  extends T01jual{
         }
     }
     
-//    public void tambahTransaksiJual() {
-//        try {
-//            MySQLConn conn = new MySQLConn();
-//            PreparedStatement stm = conn.connect("INSERT INTO kkp.t01jual (tanggal, m03_id, m05_id, jumlah, keterangan)\n" +
-//                                "VALUES (?,?,?,?,?);");
-//            
+    public void tambahTransaksiJual() {
+        try {
+            MySQLConn conn = new MySQLConn();
+            PreparedStatement stm = conn.connect("INSERT INTO kkp.t01jual (tanggal, m03_id, m05_id, jumlah, keterangan)\n" +
+                                "VALUES (?,?,?,?,?);");
+            
 //            stm.setDate(1, (Date) getTanggal());
 //            stm.setLong(2, Long.valueOf(getM03_id()));
 //            stm.setString(3, getM05_id());
 //            stm.setDouble(4, getJumlah());
 //            stm.setString(5, getKeterangan());
-//            
-//            stm.executeUpdate();
-//
-//            JOptionPane.showMessageDialog(null,
-//                    "Customer baru berhasil ditambahkan", "Berhasil",
-//                    JOptionPane.INFORMATION_MESSAGE);
-//
-//        } catch (SQLException ex) {
-//            Logger.getLogger(t01.class.getName()).log(Level.SEVERE, null, ex);
-//            JOptionPane.showMessageDialog(null,
-//                    ex.getMessage(), "Error",
-//                    JOptionPane.INFORMATION_MESSAGE);
-//            
-//        }
-//    }
+            
+            stm.executeUpdate();
+
+            JOptionPane.showMessageDialog(null,
+                    "Penjualan baru berhasil ditambahkan", "Berhasil",
+                    JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(T01jualCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null,
+                    ex.getMessage(), "Error",
+                    JOptionPane.INFORMATION_MESSAGE);
+            
+        }
+    }
     
     public DefaultTableModel getCariTransaksiJual() {
         try {
@@ -199,6 +209,64 @@ public class T01jualCtrl  extends T01jual{
         } catch (SQLException ex) {
             Logger.getLogger(T01jualCtrl.class.getName()).log(Level.SEVERE, null, ex);
             return null;
+        }
+    }
+    
+    public void printPenjualan() {
+        
+        try {
+            MySQLConn conn = new MySQLConn();
+            File file = new File("./src/Laporan/l_t01jual.jrxml");
+            JasperDesign jasperDesign = JRXmlLoader.load(file);
+            HashMap param = new HashMap();
+            param.clear();
+            
+            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, param, conn.getConnection());
+            JasperViewer.viewReport(jasperPrint, false);
+        } catch (JRException ex) {
+            Logger.getLogger(T01jualCtrl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void hapusPenjualan() {
+        try {
+            MySQLConn conn = new MySQLConn();
+            PreparedStatement stm = conn.connect("DELETE FROM t01jual WHERE t01_id = ?;");
+            
+//            stm.setString(1, getT01_id());
+//            stm.setString(2, getNmcust());
+            
+            stm.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null, 
+                    "Penjualan Berhasil Dihapus", "Berhasil", JOptionPane.INFORMATION_MESSAGE);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(T01jualCtrl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    public void editPenjualan() {
+        try {
+            MySQLConn conn = new MySQLConn();
+            PreparedStatement stm = conn.connect("UPDATE  t01jual SET tanggal = ?, m03_id = ?, m05_id = ?, jumlah = ? keterangan = ?\n" +
+                    "WHERE t01_id = ?;");
+//            stm.setString(1, getAlamat());
+//            stm.setString(2, getKota());
+//            stm.setString(3, getTelp());
+//            stm.setString(4, getKeterangan());
+//            stm.setString(5, getKdcust());
+//            stm.setString(6, getNmcust());
+
+            stm.executeUpdate();
+
+            JOptionPane.showMessageDialog(null,
+                    "Penjualan berhasil diubah", "Berhasil", JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(T01jualCtrl.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

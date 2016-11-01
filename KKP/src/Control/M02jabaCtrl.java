@@ -5,10 +5,12 @@
  */
 package Control;
 
+import Model.M02jaba;
+
 /**
  *
  * @author Thinkpad
  */
-public class M02jabaCtrl {
+public class M02jabaCtrl extends M02jaba{
     
 }

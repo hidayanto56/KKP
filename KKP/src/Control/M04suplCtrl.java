@@ -5,10 +5,12 @@
  */
 package Control;
 
+import Model.M04supl;
+
 /**
  *
  * @author Thinkpad
  */
-public class M04suplCtrl {
+public class M04suplCtrl extends M04supl{
     
 }

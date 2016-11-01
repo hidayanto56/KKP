@@ -27,7 +27,7 @@ import net.sf.jasperreports.view.JasperViewer;
  *
  * @author Thinkpad
  */
-public class M03tabuCtrl {
+public class M03tabuCtrl extends M03tabu{
    
     public DefaultTableModel getDaftarTabung() {
         try {
@@ -43,11 +43,11 @@ public class M03tabuCtrl {
 
             ResultSet rs = stm.executeQuery();
 
-            DefaultTableModel mdlCust = new DefaultTableModel();
-            mdlCust.addColumn("KODE");
-            mdlCust.addColumn("JENIS TABUNG");
-            mdlCust.addColumn("HARGA JUAL");
-            mdlCust.addColumn("KETERANGAN");
+            DefaultTableModel mdlTabu = new DefaultTableModel();
+            mdlTabu.addColumn("KODE");
+            mdlTabu.addColumn("JENIS TABUNG");
+            mdlTabu.addColumn("HARGA JUAL");
+            mdlTabu.addColumn("KETERANGAN");
 
             Object[] os = new Object[6];
             while (rs.next()) {
@@ -57,9 +57,9 @@ public class M03tabuCtrl {
                 os[5] = rs.getString("keterangan");
                 mdlTabu.addRow(os);
             }
-            return mdlCust;
+            return mdlTabu;
         } catch (SQLException ex) {
-            Logger.getLogger(M05custCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(M03tabuCtrl.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
     }
@@ -74,8 +74,8 @@ public class M03tabuCtrl {
                     + "  keterangan\n"
                     + ") \n"
                     + "VALUES ( ?,?,?,?) ;");
-            stm.setString(1, getKdTabu());
-            stm.setString(2, getJnsTabu());
+            stm.setString(1, getKd_tabung());
+            stm.setString(2, getJenis_tabung());
             stm.setString(3, getHarga());
             stm.setString(4, getKeterangan());
             
@@ -104,10 +104,10 @@ public class M03tabuCtrl {
                     + "  harga = ?,\n"
                     + "  keterangan = ?\n"
                     + "WHERE kd_tabung = ? \n");
-            stm.setString(1, getJnsTabu());
+            stm.setString(1, getJenis_tabung());
             stm.setString(2, getHarga());
             stm.setString(3, getKeterangan());
-            stm.setString(4, getKdTabu());
+            stm.setString(4, getKd_tabung());
 
             stm.executeUpdate();
 
