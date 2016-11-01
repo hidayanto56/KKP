@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="l_t01jual" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2f30e744-9f10-438d-a30c-d5526ddd8847">
-	<property name="ireport.zoom" value="1.331000000000001"/>
+	<property name="ireport.zoom" value="1.100000000000001"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<queryString>
@@ -47,7 +47,7 @@ ON m05.m05_id = t01.m05_id;]]>
 	<field name="keterangan" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<variable name="today" class="java.lang.String">
+	<variable name="today" class="java.util.Date">
 		<variableExpression><![CDATA[new java.util.Date()]]></variableExpression>
 		<initialValueExpression><![CDATA[new java.util.Date()]]></initialValueExpression>
 	</variable>
@@ -67,8 +67,8 @@ ON m05.m05_id = t01.m05_id;]]>
 	</title>
 	<pageHeader>
 		<band height="35" splitType="Stretch">
-			<textField>
-				<reportElement x="456" y="15" width="100" height="20" uuid="0aa036b7-890c-4af4-b456-219a4a7acdc8"/>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="400" y="15" width="156" height="20" uuid="0aa036b7-890c-4af4-b456-219a4a7acdc8"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
@@ -114,8 +114,8 @@ ON m05.m05_id = t01.m05_id;]]>
 				<text><![CDATA[Jenis]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="194" y="0" width="48" height="20" uuid="c5b8203f-1151-4edd-88e9-da7b9f8c526b"/>
-				<textElement verticalAlignment="Middle">
+				<reportElement x="194" y="0" width="40" height="20" uuid="c5b8203f-1151-4edd-88e9-da7b9f8c526b"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<text><![CDATA[Harga]]></text>
@@ -142,8 +142,8 @@ ON m05.m05_id = t01.m05_id;]]>
 				<text><![CDATA[Jumlah]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="400" y="0" width="56" height="20" uuid="13b1b158-64f7-4a01-83ca-b66532b4c7a7"/>
-				<textElement verticalAlignment="Middle">
+				<reportElement x="400" y="0" width="48" height="20" uuid="13b1b158-64f7-4a01-83ca-b66532b4c7a7"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<text><![CDATA[Total]]></text>
@@ -172,7 +172,7 @@ ON m05.m05_id = t01.m05_id;]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{t01_id}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="dd-MM-yyyy">
 				<reportElement x="50" y="0" width="48" height="20" uuid="f9ed046c-daa7-4e35-ba11-a21fe8d8a419"/>
 				<textElement verticalAlignment="Middle" markup="none">
 					<font size="8"/>
@@ -193,9 +193,9 @@ ON m05.m05_id = t01.m05_id;]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{jenis_tabung}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="194" y="0" width="48" height="20" uuid="784d5697-8357-4a75-bdec-fb1ae9582e6c"/>
-				<textElement verticalAlignment="Middle" markup="none">
+			<textField pattern="#,##0">
+				<reportElement x="194" y="0" width="40" height="20" uuid="784d5697-8357-4a75-bdec-fb1ae9582e6c"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{harga}]]></textFieldExpression>
@@ -222,8 +222,8 @@ ON m05.m05_id = t01.m05_id;]]>
 				<textFieldExpression><![CDATA[$F{jumlah}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0">
-				<reportElement x="400" y="0" width="56" height="20" uuid="687625dd-d9a3-4877-b04d-dc8146bb3204"/>
-				<textElement verticalAlignment="Middle" markup="none">
+				<reportElement x="400" y="0" width="48" height="20" uuid="687625dd-d9a3-4877-b04d-dc8146bb3204"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{harga}*$F{jumlah}]]></textFieldExpression>

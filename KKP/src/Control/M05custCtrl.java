@@ -70,7 +70,7 @@ public class M05custCtrl extends M05cust{
         }
     }
     
-     public void tambahCustomer() {
+    public void tambahCustomer() {
         try {
             MySQLConn conn = new MySQLConn();
             PreparedStatement stm = conn.connect("INSERT INTO kkp.m05cust (\n"

@@ -16,6 +16,9 @@ public class T01jual {
     BigInteger t01_id;
     Date tanggal;
     Integer tipe;
+    M03tabu m03tabu;
+    M05cust m05cust;
+    M04supl m04supl;
     BigInteger m03_id;
     BigInteger m04_id;
     BigInteger m05_id;
@@ -26,6 +29,7 @@ public class T01jual {
     Date created_on;
     String updated_by;
     Date updated_on;
+    
 
     public BigInteger getT01_id() {
         return t01_id;
@@ -51,8 +55,32 @@ public class T01jual {
         this.tipe = tipe;
     }
 
+    public M03tabu getM03tabu() {
+        return m03tabu;
+    }
+
+    public void setM03tabu(M03tabu m03tabu) {
+        this.m03tabu = m03tabu;
+    }
+
+    public M05cust getM05cust() {
+        return m05cust;
+    }
+
+    public void setM05cust(M05cust m05cust) {
+        this.m05cust = m05cust;
+    }
+
+    public M04supl getM04supl() {
+        return m04supl;
+    }
+
+    public void setM04supl(M04supl m04supl) {
+        this.m04supl = m04supl;
+    }
+
     public BigInteger getM03_id() {
-        return m03_id;
+        return m03tabu.getM03_id();
     }
 
     public void setM03_id(BigInteger m03_id) {
@@ -60,7 +88,7 @@ public class T01jual {
     }
 
     public BigInteger getM04_id() {
-        return m04_id;
+        return m04supl.getM04_id();
     }
 
     public void setM04_id(BigInteger m04_id) {
@@ -68,7 +96,7 @@ public class T01jual {
     }
 
     public BigInteger getM05_id() {
-        return m05_id;
+        return m05cust.getM05_id();
     }
 
     public void setM05_id(BigInteger m05_id) {

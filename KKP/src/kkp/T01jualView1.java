@@ -3,21 +3,30 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package View;
+package kkp;
 
 import Control.T01jualCtrl;
+import java.math.BigInteger;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Thinkpad
  */
-public class T01jualView extends javax.swing.JInternalFrame {
+public class T01jualView1 extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form T01jualView
+     * Creates new form T01distView
      */
-    public T01jualView() {
+    public T01jualView1() {
         initComponents();
+        
         T01jualCtrl t01 = new T01jualCtrl();
         tblDistJual.setModel(t01.getDaftarTransaksiJual());
 //        setEditStatus(false);
@@ -29,6 +38,7 @@ public class T01jualView extends javax.swing.JInternalFrame {
         for (int i=0; i < t01.getKodeCustomer().getRowCount(); i++){
             cmbKdCust.addItem(t01.getKodeCustomer().getValueAt(i, 0));
         }
+        
     }
 
     /**
@@ -40,8 +50,17 @@ public class T01jualView extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblDistJual = new javax.swing.JTable();
+        entityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory(null).createEntityManager();
+        m03tabuQuery = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT m FROM M03tabu m");
+        m03tabuList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : m03tabuQuery.getResultList();
+        m05custQuery = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT m FROM M05cust m");
+        m05custList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : m05custQuery.getResultList();
+        m03tabuQuery1 = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT m FROM M03tabu m");
+        m03tabuList1 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : m03tabuQuery1.getResultList();
+        m05custQuery1 = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT m FROM M05cust m");
+        m05custList1 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : m05custQuery1.getResultList();
+        m01pegaQuery = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT m FROM M01pega m");
+        m01pegaList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : m01pegaQuery.getResultList();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         txtTanggal = new javax.swing.JTextField();
@@ -69,21 +88,12 @@ public class T01jualView extends javax.swing.JInternalFrame {
         btnPrint = new javax.swing.JButton();
         btnHapus = new javax.swing.JButton();
         btnBatal = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblDistJual = new javax.swing.JTable();
 
+        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1132, 600));
-
-        tblDistJual.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(tblDistJual);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel2.setPreferredSize(new java.awt.Dimension(270, 232));
@@ -321,7 +331,7 @@ public class T01jualView extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -333,6 +343,19 @@ public class T01jualView extends javax.swing.JInternalFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17))
         );
+
+        tblDistJual.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tblDistJual);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -364,6 +387,94 @@ public class T01jualView extends javax.swing.JInternalFrame {
         txtTanggal.setText(txtTanggal.getText().toUpperCase());
     }//GEN-LAST:event_txtTanggalKeyReleased
 
+    private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
+//        if(!txtTanggal.getText().equals("") || !txtNmCust.getText().equals("")){
+//            T01 cb = new M05custCtrl();
+//            cb.setKdcust(txtTanggal.getText());
+//            cb.setNmcust(txtNmCust.getText());
+//            cb.setAlamat(txtNmTabung.getText());
+//            cb.setKota(txtHarga.getText());
+//            cb.setTelp(txtTelp.getText());
+//            cb.setKeterangan(txtNmCust.getText());
+//            cb.tambahCustomer();
+//
+//            btnClearActionPerformed(evt);
+//            tblCustomer.setModel(cb.getDaftarCustomer());
+//
+//        }else{
+//            JOptionPane.showInternalMessageDialog(this, "Kode Customer dan Nama Customer tidak boleh kosong", "Error", JOptionPane.INFORMATION_MESSAGE);
+//            //            JOptionPane.showInternalMessageDialog(null,
+//                //                    "Kode Customer dan Nama Customer harus diisi", "ERROR",
+//                //                    JOptionPane.INFORMATION_MESSAGE);
+//        }
+
+    }//GEN-LAST:event_btnTambahActionPerformed
+
+    private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
+//        try {
+//            T01jualCtrl cbm = new T01jualCtrl();
+//            
+//            String tanggal = txtTanggal.getText();
+//            DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+//            Date date = format.parse(tanggal);
+//            
+//            cbm.setTanggal(date);
+//            cbm.setM03_id(BigInteger.valueOf(cmbKdTabung.getSelectedIndex()));
+//            cbm.setM05_id(BigInteger.valueOf(cmbKdCust.getSelectedIndex()));
+//            //        cbm.setSatuan(txtSatuan.getText());
+//            //        cbm.setHarga(Integer.parseInt(txtHarga.getText()));
+//            tblDistJual.setModel(cbm.getCariTransaksiJual());
+//        } catch (ParseException ex) {
+//            Logger.getLogger(T01jualView.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+    }//GEN-LAST:event_btnCariActionPerformed
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+//        M05custCtrl cb = new M05custCtrl();
+//        cb.setKdcust(txtTanggal.getText());
+//        cb.setNmcust(txtNmCust.getText());
+//        cb.setAlamat(txtNmTabung.getText());
+//        cb.setKota(txtHarga.getText());
+//        cb.setTelp(txtTelp.getText());
+//        cb.setKeterangan(txtNmCust.getText());
+//        cb.editCustomer();
+//
+//        setEditStatus(false);
+//        btnClearActionPerformed(evt);
+//
+//        M05custCtrl cb2 = new M05custCtrl();
+//        tblCustomer.setModel(cb2.getDaftarCustomer());
+    }//GEN-LAST:event_btnEditActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+//        clearText();
+    }//GEN-LAST:event_btnClearActionPerformed
+
+    private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
+//        M05custCtrl cb = new M05custCtrl();
+//        cb.printCustomer();
+    }//GEN-LAST:event_btnPrintActionPerformed
+
+    private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
+//        M05custCtrl cb = new M05custCtrl();
+//        cb.setKdcust(txtTanggal.getText());
+//        cb.setNmcust(txtNmCust.getText());
+//        cb.hapusCustomer();
+//
+//        setHapusStatus(false);
+//        btnClearActionPerformed(evt);
+//
+//        M05custCtrl cb2 = new M05custCtrl();
+//        tblCustomer.setModel(cb2.getDaftarCustomer());
+    }//GEN-LAST:event_btnHapusActionPerformed
+
+    private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
+//        setEditStatus(false);
+//        btnClearActionPerformed(evt);
+//        M05custCtrl cb = new M05custCtrl();
+//        tblCustomer.setModel(cb.getDaftarCustomer());
+    }//GEN-LAST:event_btnBatalActionPerformed
+
     private void txtNmTabungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNmTabungActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNmTabungActionPerformed
@@ -376,93 +487,6 @@ public class T01jualView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbKdCustActionPerformed
 
-    private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
-        //        if(!txtTanggal.getText().equals("") || !txtNmCust.getText().equals("")){
-            //            T01 cb = new M05custCtrl();
-            //            cb.setKdcust(txtTanggal.getText());
-            //            cb.setNmcust(txtNmCust.getText());
-            //            cb.setAlamat(txtNmTabung.getText());
-            //            cb.setKota(txtHarga.getText());
-            //            cb.setTelp(txtTelp.getText());
-            //            cb.setKeterangan(txtNmCust.getText());
-            //            cb.tambahCustomer();
-            //
-            //            btnClearActionPerformed(evt);
-            //            tblCustomer.setModel(cb.getDaftarCustomer());
-            //
-            //        }else{
-            //            JOptionPane.showInternalMessageDialog(this, "Kode Customer dan Nama Customer tidak boleh kosong", "Error", JOptionPane.INFORMATION_MESSAGE);
-            //            //            JOptionPane.showInternalMessageDialog(null,
-                //                //                    "Kode Customer dan Nama Customer harus diisi", "ERROR",
-                //                //                    JOptionPane.INFORMATION_MESSAGE);
-            //        }
-    }//GEN-LAST:event_btnTambahActionPerformed
-
-    private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
-        //        try {
-            //            T01jualCtrl cbm = new T01jualCtrl();
-            //
-            //            String tanggal = txtTanggal.getText();
-            //            DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-            //            Date date = format.parse(tanggal);
-            //
-            //            cbm.setTanggal(date);
-            //            cbm.setM03_id(BigInteger.valueOf(cmbKdTabung.getSelectedIndex()));
-            //            cbm.setM05_id(BigInteger.valueOf(cmbKdCust.getSelectedIndex()));
-            //            //        cbm.setSatuan(txtSatuan.getText());
-            //            //        cbm.setHarga(Integer.parseInt(txtHarga.getText()));
-            //            tblDistJual.setModel(cbm.getCariTransaksiJual());
-            //        } catch (ParseException ex) {
-            //            Logger.getLogger(T01jualView.class.getName()).log(Level.SEVERE, null, ex);
-            //        }
-    }//GEN-LAST:event_btnCariActionPerformed
-
-    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-        //        M05custCtrl cb = new M05custCtrl();
-        //        cb.setKdcust(txtTanggal.getText());
-        //        cb.setNmcust(txtNmCust.getText());
-        //        cb.setAlamat(txtNmTabung.getText());
-        //        cb.setKota(txtHarga.getText());
-        //        cb.setTelp(txtTelp.getText());
-        //        cb.setKeterangan(txtNmCust.getText());
-        //        cb.editCustomer();
-        //
-        //        setEditStatus(false);
-        //        btnClearActionPerformed(evt);
-        //
-        //        M05custCtrl cb2 = new M05custCtrl();
-        //        tblCustomer.setModel(cb2.getDaftarCustomer());
-    }//GEN-LAST:event_btnEditActionPerformed
-
-    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
-        //        clearText();
-    }//GEN-LAST:event_btnClearActionPerformed
-
-    private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
-        //        M05custCtrl cb = new M05custCtrl();
-        //        cb.printCustomer();
-    }//GEN-LAST:event_btnPrintActionPerformed
-
-    private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
-        //        M05custCtrl cb = new M05custCtrl();
-        //        cb.setKdcust(txtTanggal.getText());
-        //        cb.setNmcust(txtNmCust.getText());
-        //        cb.hapusCustomer();
-        //
-        //        setHapusStatus(false);
-        //        btnClearActionPerformed(evt);
-        //
-        //        M05custCtrl cb2 = new M05custCtrl();
-        //        tblCustomer.setModel(cb2.getDaftarCustomer());
-    }//GEN-LAST:event_btnHapusActionPerformed
-
-    private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
-        //        setEditStatus(false);
-        //        btnClearActionPerformed(evt);
-        //        M05custCtrl cb = new M05custCtrl();
-        //        tblCustomer.setModel(cb.getDaftarCustomer());
-    }//GEN-LAST:event_btnBatalActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBatal;
@@ -474,6 +498,7 @@ public class T01jualView extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnTambah;
     private javax.swing.JComboBox cmbKdCust;
     private javax.swing.JComboBox cmbKdTabung;
+    private javax.persistence.EntityManager entityManager;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -487,6 +512,16 @@ public class T01jualView extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private java.util.List<Model.M01pega> m01pegaList;
+    private javax.persistence.Query m01pegaQuery;
+    private java.util.List<Model.M03tabu> m03tabuList;
+    private java.util.List<Model.M03tabu> m03tabuList1;
+    private javax.persistence.Query m03tabuQuery;
+    private javax.persistence.Query m03tabuQuery1;
+    private java.util.List<Model.M05cust> m05custList;
+    private java.util.List<Model.M05cust> m05custList1;
+    private javax.persistence.Query m05custQuery;
+    private javax.persistence.Query m05custQuery1;
     private javax.swing.JTable tblDistJual;
     private javax.swing.JTextField txtHarga;
     private javax.swing.JTextField txtJumlah;
