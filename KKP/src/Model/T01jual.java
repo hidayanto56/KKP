@@ -18,7 +18,7 @@ public class T01jual {
     Integer tipe;
     Double jumlah;
     String kd_tabung;
-    String kdsupl;
+    String kdcust;
     String keterangan;
     Long version;
     String created_by;
@@ -66,12 +66,12 @@ public class T01jual {
         this.kd_tabung = kd_tabung;
     }
 
-    public String getKdsupl() {
-        return kdsupl;
+    public String getKdcust() {
+        return kdcust;
     }
 
-    public void setKdsupl(String kdsupl) {
-        this.kdsupl = kdsupl;
+    public void setKdcust(String kdcust) {
+        this.kdcust = kdcust;
     }
 
     public String getKeterangan() {
@@ -121,7 +121,6 @@ public class T01jual {
     public void setUpdated_on(Date updated_on) {
         this.updated_on = updated_on;
     }
-
 
     
 }

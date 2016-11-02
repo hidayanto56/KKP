@@ -6,6 +6,16 @@
 package View;
 
 import Control.T01jualCtrl;
+import static java.awt.Color.red;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Formatter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.border.Border;
 
 /**
  *
@@ -19,6 +29,9 @@ public class T01jualView extends javax.swing.JInternalFrame {
     public T01jualView() {
         initComponents();
         txtID.setEditable(false);
+        txtTanggal.setText(new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
+//        txtTanggal.setBorder(;
+        
         T01jualCtrl t01 = new T01jualCtrl();
         tblDistJual.setModel(t01.getDaftarTransaksiJual());
 //        setEditStatus(false);
@@ -134,12 +147,22 @@ public class T01jualView extends javax.swing.JInternalFrame {
 
         jLabel8.setText("Keterangan");
 
+        cmbKdTabung.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbKdTabungItemStateChanged(evt);
+            }
+        });
         cmbKdTabung.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbKdTabungActionPerformed(evt);
             }
         });
 
+        cmbKdCust.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbKdCustItemStateChanged(evt);
+            }
+        });
         cmbKdCust.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbKdCustActionPerformed(evt);
@@ -389,7 +412,7 @@ public class T01jualView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtTanggalActionPerformed
 
     private void txtTanggalKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTanggalKeyReleased
-        txtTanggal.setText(txtTanggal.getText().toUpperCase());
+//        txtTanggal.setText(txtTanggal.getText().toUpperCase());
     }//GEN-LAST:event_txtTanggalKeyReleased
 
     private void txtNmTabungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNmTabungActionPerformed
@@ -405,90 +428,108 @@ public class T01jualView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cmbKdCustActionPerformed
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
-        //        if(!txtTanggal.getText().equals("") || !txtNmCust.getText().equals("")){
-            //            T01 cb = new M05custCtrl();
-            //            cb.setKdcust(txtTanggal.getText());
-            //            cb.setNmcust(txtNmCust.getText());
-            //            cb.setAlamat(txtNmTabung.getText());
-            //            cb.setKota(txtHarga.getText());
-            //            cb.setTelp(txtTelp.getText());
-            //            cb.setKeterangan(txtNmCust.getText());
-            //            cb.tambahCustomer();
-            //
-            //            btnClearActionPerformed(evt);
-            //            tblCustomer.setModel(cb.getDaftarCustomer());
-            //
-            //        }else{
-            //            JOptionPane.showInternalMessageDialog(this, "Kode Customer dan Nama Customer tidak boleh kosong", "Error", JOptionPane.INFORMATION_MESSAGE);
-            //            //            JOptionPane.showInternalMessageDialog(null,
-                //                //                    "Kode Customer dan Nama Customer harus diisi", "ERROR",
-                //                //                    JOptionPane.INFORMATION_MESSAGE);
-            //        }
+                if(!txtTanggal.getText().equals("") || txtTanggal.getText() != null){
+                        T01jualCtrl cb = new T01jualCtrl();
+                        
+                        String tanggal = txtTanggal.getText();
+                        DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+                        Date date = null;
+                    try {
+                        date = format.parse(tanggal);
+                    } catch (ParseException ex) {
+                        Logger.getLogger(T01jualView.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+            
+                        cb.setTanggal(date);
+                        cb.setKd_tabung(cmbKdTabung.getSelectedItem().toString());
+                        cb.setKdcust(cmbKdCust.getSelectedItem().toString());
+                        if(txtJumlah.getText() != null){
+                            cb.setJumlah(Double.valueOf(txtJumlah.getText()));
+                        }else{
+                            cb.setJumlah(new Double(0));
+                        }
+                        cb.setKeterangan(txtKeterangan.getText());
+                        cb.tambahTransaksiJual();
+            
+                        btnClearActionPerformed(evt);
+                        tblDistJual.setModel(cb.getDaftarTransaksiJual());
+            
+                    }else{
+                        JOptionPane.showInternalMessageDialog(this, "Tanggal tidak boleh kosong", "Error", 
+                                JOptionPane.INFORMATION_MESSAGE);
+                    }
     }//GEN-LAST:event_btnTambahActionPerformed
 
     private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
-        //        try {
-            //            T01jualCtrl cbm = new T01jualCtrl();
-            //
-            //            String tanggal = txtTanggal.getText();
-            //            DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-            //            Date date = format.parse(tanggal);
-            //
-            //            cbm.setTanggal(date);
-            //            cbm.setM03_id(BigInteger.valueOf(cmbKdTabung.getSelectedIndex()));
-            //            cbm.setM05_id(BigInteger.valueOf(cmbKdCust.getSelectedIndex()));
-            //            //        cbm.setSatuan(txtSatuan.getText());
-            //            //        cbm.setHarga(Integer.parseInt(txtHarga.getText()));
-            //            tblDistJual.setModel(cbm.getCariTransaksiJual());
-            //        } catch (ParseException ex) {
-            //            Logger.getLogger(T01jualView.class.getName()).log(Level.SEVERE, null, ex);
-            //        }
+                try {
+                        T01jualCtrl cbm = new T01jualCtrl();
+            
+                        String tanggal = txtTanggal.getText();
+                        DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+                        Date date = format.parse(tanggal);
+            
+                        cbm.setTanggal(date);
+                        cbm.setKd_tabung(cmbKdTabung.getSelectedItem().toString());
+                        cbm.setKdcust(cmbKdCust.getSelectedItem().toString());
+                        //        cbm.setSatuan(txtSatuan.getText());
+                        //        cbm.setHarga(Integer.parseInt(txtHarga.getText()));
+                        tblDistJual.setModel(cbm.getCariTransaksiJual());
+                    } catch (ParseException ex) {
+                        Logger.getLogger(T01jualView.class.getName()).log(Level.SEVERE, null, ex);
+                    }
     }//GEN-LAST:event_btnCariActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-        //        M05custCtrl cb = new M05custCtrl();
-        //        cb.setKdcust(txtTanggal.getText());
-        //        cb.setNmcust(txtNmCust.getText());
-        //        cb.setAlamat(txtNmTabung.getText());
-        //        cb.setKota(txtHarga.getText());
-        //        cb.setTelp(txtTelp.getText());
-        //        cb.setKeterangan(txtNmCust.getText());
-        //        cb.editCustomer();
-        //
-        //        setEditStatus(false);
-        //        btnClearActionPerformed(evt);
-        //
-        //        M05custCtrl cb2 = new M05custCtrl();
-        //        tblCustomer.setModel(cb2.getDaftarCustomer());
+                T01jualCtrl cb = new T01jualCtrl();
+                String tanggal = txtTanggal.getText();
+                        DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+                        Date date = null;
+        try {
+            date = format.parse(tanggal);
+        } catch (ParseException ex) {
+            Logger.getLogger(T01jualView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+                cb.setTanggal(date);
+                cb.setKd_tabung(cmbKdTabung.getSelectedItem().toString());
+                cb.setKdcust(cmbKdCust.getSelectedItem().toString());
+                cb.setJumlah(Double.valueOf(txtJumlah.getText()));
+                cb.setKeterangan(txtNmCust.getText());
+                cb.editPenjualan();
+        
+                setEditStatus(false);
+                btnClearActionPerformed(evt);
+        
+                T01jualCtrl cb2 = new T01jualCtrl();
+                tblDistJual.setModel(cb2.getDaftarTransaksiJual());
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
-        //        clearText();
+                clearText();
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
-        //        M05custCtrl cb = new M05custCtrl();
-        //        cb.printCustomer();
+                T01jualCtrl cb = new T01jualCtrl();
+                cb.printPenjualan();
     }//GEN-LAST:event_btnPrintActionPerformed
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
-        //        M05custCtrl cb = new M05custCtrl();
-        //        cb.setKdcust(txtTanggal.getText());
-        //        cb.setNmcust(txtNmCust.getText());
-        //        cb.hapusCustomer();
-        //
-        //        setHapusStatus(false);
-        //        btnClearActionPerformed(evt);
-        //
-        //        M05custCtrl cb2 = new M05custCtrl();
-        //        tblCustomer.setModel(cb2.getDaftarCustomer());
+                T01jualCtrl cb = new T01jualCtrl();
+                cb.setT01_id(Long.parseLong(txtID.getText()));
+                cb.hapusPenjualan();
+        
+                setHapusStatus(false);
+                btnClearActionPerformed(evt);
+        
+                T01jualCtrl cb2 = new T01jualCtrl();
+                tblDistJual.setModel(cb2.getDaftarTransaksiJual());
     }//GEN-LAST:event_btnHapusActionPerformed
 
     private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
-        //        setEditStatus(false);
-        //        btnClearActionPerformed(evt);
-        //        M05custCtrl cb = new M05custCtrl();
-        //        tblCustomer.setModel(cb.getDaftarCustomer());
+                setEditStatus(false);
+                btnClearActionPerformed(evt);
+                T01jualCtrl cb = new T01jualCtrl();
+                tblDistJual.setModel(cb.getDaftarTransaksiJual());
     }//GEN-LAST:event_btnBatalActionPerformed
 
     private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
@@ -499,6 +540,103 @@ public class T01jualView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIDKeyReleased
 
+    private void cmbKdTabungItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbKdTabungItemStateChanged
+        T01jualCtrl t01 = new T01jualCtrl();
+        t01.setKd_tabung(cmbKdTabung.getSelectedItem().toString());
+        t01.getTabung();
+        
+        txtNmTabung.setText(t01.getTabung().getValueAt(0, 1).toString());
+        txtHarga.setText(t01.getTabung().getValueAt(0, 2).toString());
+        
+    }//GEN-LAST:event_cmbKdTabungItemStateChanged
+
+    private void cmbKdCustItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbKdCustItemStateChanged
+        T01jualCtrl t01 = new T01jualCtrl();
+        t01.setKdcust(cmbKdCust.getSelectedItem().toString());
+        t01.getCustomer();
+        
+        txtNmCust.setText(t01.getCustomer().getValueAt(0, 1).toString());
+    }//GEN-LAST:event_cmbKdCustItemStateChanged
+
+    private void setEditStatus(boolean status) {
+        if (status == false) {
+            btnCari.setEnabled(true);
+            btnTambah.setEnabled(true);
+            btnHapus.setEnabled(true);
+            btnEdit.setEnabled(false);
+            btnBatal.setEnabled(true);
+            txtTanggal.setEditable(false);
+            cmbKdTabung.setEnabled(false);
+            txtNmTabung.setEditable(false);
+            txtHarga.setEditable(false);
+            cmbKdCust.setEnabled(false);
+            txtNmCust.setEditable(false);
+            txtJumlah.setEditable(false);
+            txtKeterangan.setEditable(false);
+            
+        } else {
+            btnCari.setEnabled(false);
+            btnTambah.setEnabled(false);
+            btnHapus.setEnabled(true);
+            btnEdit.setEnabled(true);
+            btnBatal.setEnabled(true);
+            txtTanggal.setEditable(true);
+            cmbKdTabung.setEnabled(true);
+            txtNmTabung.setEditable(true);
+            txtHarga.setEditable(true);
+            cmbKdCust.setEnabled(true);
+            txtNmCust.setEditable(true);
+            txtJumlah.setEditable(false);
+            txtKeterangan.setEditable(false);
+            
+        }
+    }
+    
+    private void clearText() {
+        txtID.setText("");
+        txtTanggal.setText(new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
+        txtNmTabung.setText("");
+        txtHarga.setText("");
+        txtNmCust.setText("");
+        txtJumlah.setText("");
+        txtKeterangan.setText("");
+    }
+    
+    private void setHapusStatus(boolean status) {
+        if (status == false) {
+            btnCari.setEnabled(true);
+            btnTambah.setEnabled(true);
+            btnClear.setEnabled(true);
+            btnEdit.setEnabled(false);
+            btnHapus.setEnabled(false);
+            btnBatal.setEnabled(false);
+            txtTanggal.setEditable(true);
+            cmbKdTabung.setEnabled(true);
+            txtNmTabung.setEditable(true);
+            txtHarga.setEditable(true);
+            cmbKdCust.setEnabled(true);
+            txtNmCust.setEditable(true);
+            txtJumlah.setEditable(true);
+            txtKeterangan.setEditable(true);
+            
+        } else {
+            btnCari.setEnabled(false);
+            btnTambah.setEnabled(false);
+            btnClear.setEnabled(false);
+            btnEdit.setEnabled(true);
+            btnHapus.setEnabled(true);
+            btnBatal.setEnabled(true);
+            txtTanggal.setEditable(false);
+            cmbKdTabung.setEnabled(false);
+            txtNmTabung.setEditable(false);
+            txtHarga.setEditable(false);
+            cmbKdCust.setEnabled(false);
+            txtNmCust.setEditable(false);
+            txtJumlah.setEditable(false);
+            txtKeterangan.setEditable(false);
+            
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBatal;
