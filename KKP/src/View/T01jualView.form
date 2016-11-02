@@ -283,11 +283,13 @@
             </Component>
             <Component class="javax.swing.JComboBox" name="cmbKdTabung">
               <Events>
+                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cmbKdTabungItemStateChanged"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbKdTabungActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JComboBox" name="cmbKdCust">
               <Events>
+                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cmbKdCustItemStateChanged"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbKdCustActionPerformed"/>
               </Events>
             </Component>

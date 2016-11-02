@@ -12,7 +12,7 @@ import java.util.Date;
  * @author Thinkpad
  */
 public class T02beli {
-    Long t03_id;
+    Long t02_id;
     Date tanggal;
     String kd_tabung;
     String kdsupl;
@@ -24,12 +24,12 @@ public class T02beli {
     String updated_by;
     Date updated_on;
 
-    public Long getT03_id() {
-        return t03_id;
+    public Long getT02_id() {
+        return t02_id;
     }
 
-    public void setT03_id(Long t03_id) {
-        this.t03_id = t03_id;
+    public void setT02_id(Long t02_id) {
+        this.t02_id = t02_id;
     }
 
     public Date getTanggal() {

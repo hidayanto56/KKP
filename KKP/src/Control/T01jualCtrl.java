@@ -34,18 +34,18 @@ public class T01jualCtrl  extends T01jual{
         try {
             MySQLConn conn = new MySQLConn();
 
-            PreparedStatement stm = conn.connect("SELECT m03_id, kd_tabung FROM m03tabu");
+            PreparedStatement stm = conn.connect("SELECT kd_tabung FROM m03tabu");
 
             ResultSet rs = stm.executeQuery();
 
             DefaultTableModel mdlCust = new DefaultTableModel();
-            mdlCust.addColumn("M03_ID");
+//            mdlCust.addColumn("M03_ID");
             mdlCust.addColumn("KODE");
 
-            Object[] os = new Object[2];
+            Object[] os = new Object[1];
             while (rs.next()) {
-                os[0] = rs.getString("m03_id");
-                os[1] = rs.getString("kd_tabung");
+//                os[0] = rs.getString("m03_id");
+                os[0] = rs.getString("kd_tabung");
                 mdlCust.addRow(os);
             }
             
@@ -86,15 +86,15 @@ public class T01jualCtrl  extends T01jual{
         try {
             MySQLConn conn = new MySQLConn();
 
-            PreparedStatement stm = conn.connect("SELECT t01_id, tanggal, t01.m03_id, \n" +
+            PreparedStatement stm = conn.connect("SELECT t01_id, tanggal,  \n" +
                 "m03.kd_tabung AS kd_tabung, m03.jenis_tabung AS jenis_tabung, \n" +
-                "m03.harga AS harga, t01.m05_id, m05.kdcust AS kdcust, \n" +
+                "m03.harga AS harga, m05.kdcust AS kdcust, \n" +
                 "m05.nmcust AS nmcust, jumlah, t01.keterangan \n" +
                 "FROM kkp.t01jual t01\n" +
                 "INNER JOIN m03tabu m03\n" +
-                "ON m03.m03_id = t01.m03_id\n" +
+                "ON m03.kd_tabung = t01.kd_tabung\n" +
                 "INNER JOIN m05cust m05\n" +
-                "ON m05.m05_id = t01.m05_id;");
+                "ON m05.kdcust = t01.kdcust;");
 
             ResultSet rs = stm.executeQuery();
 
@@ -132,12 +132,12 @@ public class T01jualCtrl  extends T01jual{
     public void tambahTransaksiJual() {
         try {
             MySQLConn conn = new MySQLConn();
-            PreparedStatement stm = conn.connect("INSERT INTO kkp.t01jual (tanggal, m03_id, m05_id, jumlah, keterangan)\n" +
-                                "VALUES (?,?,?,?,?);");
+            PreparedStatement stm = conn.connect("INSERT INTO kkp.t01jual (tanggal, kd_tabung, kdcust, jumlah, keterangan)\n" +
+                "VALUES (?,?,?,?,?);");
             
             stm.setDate(1, (Date) getTanggal());
-            stm.setLong(2, getM03_id());
-            stm.setLong(3, getM05_id());
+            stm.setString(2, getKd_tabung());
+            stm.setString(3, getKdcust());
             stm.setDouble(4, getJumlah());
             stm.setString(5, getKeterangan());
             
@@ -160,21 +160,21 @@ public class T01jualCtrl  extends T01jual{
         try {
             MySQLConn conn = new MySQLConn();
             PreparedStatement stm = conn.connect(
-                    "SELECT t01_id, tanggal, t01.m03_id, \n" +
+                    "SELECT t01_id, tanggal, \n" +
                     "m03.kd_tabung AS kd_tabung, m03.jenis_tabung AS jenis_tabung, \n" +
-                    "m03.harga AS harga, t01.m05_id, m05.kdcust AS kdcust, \n" +
+                    "m03.harga AS harga, m05.kdcust AS kdcust, \n" +
                     "m05.nmcust AS nmcust, jumlah, t01.keterangan \n" +
                     "FROM kkp.t01jual t01\n" +
                     "INNER JOIN m03tabu m03\n" +
-                    "ON m03.m03_id = t01.m03_id\n" +
+                    "ON m03.kd_tabung = t01.kd_tabung\n" +
                     "INNER JOIN m05cust m05\n" +
-                    "ON m05.m05_id = t01.m05_id\n" +
-                    "WHERE tanggal = ? AND m03.kd_tabung = ? AND m05.kdcust = ?;"
+                    "ON m05.kdcust = t01.kdcust\n" +
+                    "WHERE tanggal = ? AND m03.kd_tabung LIKE ? AND m05.kdcust LIKE ?;"
                     );
             
             stm.setString(1, "%" + getTanggal()+ "%");
-//            stm.setString(2, "%" + get+ "%");
-            stm.setString(3, "%" + getM05cust().getKdcust()+ "%");
+            stm.setString(2, "%" + getKd_tabung()+ "%");
+            stm.setString(3, "%" + getKdcust()+ "%");
 //            stm.setString(4, "%" + getSatuan() + "%");
 //            stm.setString(5, "%" + getHarga() + "%");
             
@@ -251,16 +251,16 @@ public class T01jualCtrl  extends T01jual{
     public void editPenjualan() {
         try {
             MySQLConn conn = new MySQLConn();
-            PreparedStatement stm = conn.connect("UPDATE  t01jual SET "
-                    + "tanggal = ?, "
-                    + "m03_id = ?, "
-                    + "m05_id = ?, "
-                    + "jumlah = ? "
-                    + "keterangan = ?\n" +
-                    "WHERE t01_id = ?;");
+            PreparedStatement stm = conn.connect("UPDATE  t01jual SET \n" +
+                "tanggal = ?, \n" +
+                "kd_tabung= ?, \n" +
+                "kdcust= ?, \n" +
+                "jumlah = ? \n" +
+                "keterangan = ?\n" +
+                "WHERE t01_id = ?;");
             stm.setDate(1, (Date) getTanggal());
-            stm.setLong(2, getM03_id());
-            stm.setLong(3, getM05_id());
+            stm.setString(2, getKd_tabung());
+            stm.setString(3, getKdcust());
             stm.setDouble(4, getJumlah());
             stm.setString(5, getKeterangan());
             stm.setLong(6, getT01_id());
@@ -272,6 +272,64 @@ public class T01jualCtrl  extends T01jual{
 
         } catch (SQLException ex) {
             Logger.getLogger(T01jualCtrl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
+    public DefaultTableModel getTabung(){
+        try {
+            MySQLConn conn = new MySQLConn();
+
+            PreparedStatement stm = conn.connect("SELECT kd_tabung, jenis_tabung, harga FROM m03tabu WHERE kd_tabung = ?;");
+            stm.setString(1, getKd_tabung());
+
+            ResultSet rs = stm.executeQuery();
+
+            DefaultTableModel mdlCust = new DefaultTableModel();
+            mdlCust.addColumn("KODE");
+            mdlCust.addColumn("JENIS");
+            mdlCust.addColumn("HARGA");
+
+            Object[] os = new Object[3];
+            while (rs.next()) {
+                os[0] = rs.getString("kd_tabung");
+                os[1] = rs.getString("jenis_tabung");
+                os[2] = rs.getString("harga");
+                mdlCust.addRow(os);
+            }
+            
+            
+            return mdlCust;
+        } catch (SQLException ex) {
+            Logger.getLogger(T01jualCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
+    public DefaultTableModel getCustomer(){
+        try {
+            MySQLConn conn = new MySQLConn();
+
+            PreparedStatement stm = conn.connect("SELECT kdcust, nmcust FROM m05cust WHERE kdcust = ?;");
+            stm.setString(1, getKdcust());
+
+            ResultSet rs = stm.executeQuery();
+
+            DefaultTableModel mdlCust = new DefaultTableModel();
+            mdlCust.addColumn("KODE");
+            mdlCust.addColumn("NAMA");
+
+            Object[] os = new Object[2];
+            while (rs.next()) {
+                os[0] = rs.getString("kdcust");
+                os[1] = rs.getString("nmcust");
+                mdlCust.addRow(os);
+            }
+            
+            return mdlCust;
+        } catch (SQLException ex) {
+            Logger.getLogger(T01jualCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
     }
 }
