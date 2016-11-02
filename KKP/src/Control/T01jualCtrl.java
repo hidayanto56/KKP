@@ -34,7 +34,7 @@ public class T01jualCtrl  extends T01jual{
         try {
             MySQLConn conn = new MySQLConn();
 
-            PreparedStatement stm = conn.connect("SELECT `kd_tabung` FROM `m03tabu`");
+            PreparedStatement stm = conn.connect("SELECT kd_tabung FROM m03tabu");
 
             ResultSet rs = stm.executeQuery();
 
@@ -59,7 +59,7 @@ public class T01jualCtrl  extends T01jual{
         try {
             MySQLConn conn = new MySQLConn();
 
-            PreparedStatement stm = conn.connect("SELECT `kdcust` FROM `m05cust`");
+            PreparedStatement stm = conn.connect("SELECT kdcust FROM m05cust");
 
             ResultSet rs = stm.executeQuery();
 
@@ -135,9 +135,9 @@ public class T01jualCtrl  extends T01jual{
             
             stm.setDate(1, (Date) getTanggal());
             stm.setLong(2, getM03_id());
-//            stm.setString(3, getM05_id());
-//            stm.setDouble(4, getJumlah());
-//            stm.setString(5, getKeterangan());
+            stm.setLong(3, getM05_id());
+            stm.setDouble(4, getJumlah());
+            stm.setString(5, getKeterangan());
             
             stm.executeUpdate();
 
@@ -171,7 +171,7 @@ public class T01jualCtrl  extends T01jual{
                     );
             
             stm.setString(1, "%" + getTanggal()+ "%");
-            stm.setString(2, "%" + getM03tabu().getKd_tabung()+ "%");
+//            stm.setString(2, "%" + get+ "%");
             stm.setString(3, "%" + getM05cust().getKdcust()+ "%");
 //            stm.setString(4, "%" + getSatuan() + "%");
 //            stm.setString(5, "%" + getHarga() + "%");
