@@ -49,12 +49,12 @@ public class M03tabuCtrl extends M03tabu{
             mdlTabu.addColumn("HARGA JUAL");
             mdlTabu.addColumn("KETERANGAN");
 
-            Object[] os = new Object[6];
+            Object[] os = new Object[4];
             while (rs.next()) {
                 os[0] = rs.getString("kd_tabung");
                 os[1] = rs.getString("jenis_tabung");
                 os[2] = rs.getString("harga");
-                os[5] = rs.getString("keterangan");
+                os[3] = rs.getString("keterangan");
                 mdlTabu.addRow(os);
             }
             return mdlTabu;
@@ -76,7 +76,7 @@ public class M03tabuCtrl extends M03tabu{
                     + "VALUES ( ?,?,?,?) ;");
             stm.setString(1, getKd_tabung());
             stm.setString(2, getJenis_tabung());
-            stm.setString(3, getHarga());
+            stm.setDouble(3, getHarga());
             stm.setString(4, getKeterangan());
             
             stm.executeUpdate();
@@ -86,7 +86,7 @@ public class M03tabuCtrl extends M03tabu{
                     JOptionPane.INFORMATION_MESSAGE);
 
         } catch (SQLException ex) {
-            Logger.getLogger(M05custCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(M03tabuCtrl.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null,
                     ex.getMessage(), "Error",
                     JOptionPane.INFORMATION_MESSAGE);
@@ -105,48 +105,48 @@ public class M03tabuCtrl extends M03tabu{
                     + "  keterangan = ?\n"
                     + "WHERE kd_tabung = ? \n");
             stm.setString(1, getJenis_tabung());
-            stm.setString(2, getHarga());
+            stm.setDouble(2, getHarga());
             stm.setString(3, getKeterangan());
             stm.setString(4, getKd_tabung());
 
             stm.executeUpdate();
 
             JOptionPane.showMessageDialog(null,
-                    "Tabung berhasil diubah", "Berhasil", JOptionPane.INFORMATION_MESSAGE);
+                    "Data Tabung berhasil diubah", "Berhasil", JOptionPane.INFORMATION_MESSAGE);
 
         } catch (SQLException ex) {
-            Logger.getLogger(M05custCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(M03tabuCtrl.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    public void hapusCustomer() {
+    public void hapusTabung() {
         try {
             MySQLConn conn = new MySQLConn();
             PreparedStatement stm = conn.connect("DELETE \n"
                     + "FROM\n"
-                    + "  kkp.m05cust\n"
-                    + "WHERE kdcust= ? \n"
-                    + "  AND nmcust= ? ;");
+                    + "  kkp.m03tabu\n"
+                    + "WHERE kd_tabung= ? \n"
+                    + "  AND jenis_tabung= ? ;");
             
-            stm.setString(1, getKdcust());
-            stm.setString(2, getNmcust());
+            stm.setString(1, getKd_tabung());
+            stm.setString(2, getJenis_tabung());
             
             stm.executeUpdate();
             
             JOptionPane.showMessageDialog(null, 
-                    "Customer Berhasil Dihapus", "Berhasil", JOptionPane.INFORMATION_MESSAGE);
+                    "Data Tabung Berhasil Dihapus", "Berhasil", JOptionPane.INFORMATION_MESSAGE);
             
         } catch (SQLException ex) {
-            Logger.getLogger(M05custCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(M03tabuCtrl.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
     
-    public void printCustomer() {
+    public void printTabung() {
         
         try {
             MySQLConn conn = new MySQLConn();
-            File file = new File("./src/Laporan/l_m05cust.jrxml");
+            File file = new File("./src/Laporan/l_m03tabu.jrxml");
             JasperDesign jasperDesign = JRXmlLoader.load(file);
             HashMap param = new HashMap();
             param.clear();
@@ -155,31 +155,29 @@ public class M03tabuCtrl extends M03tabu{
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, param, conn.getConnection());
             JasperViewer.viewReport(jasperPrint, false);
         } catch (JRException ex) {
-            Logger.getLogger(M05custCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(M03tabuCtrl.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    public DefaultTableModel getCariCustomer() {
+    public DefaultTableModel getCariTabung() {
         try {
             MySQLConn conn = new MySQLConn();
             PreparedStatement stm = conn.connect(
                     "SELECT\n"
-                    + "  kdcust,\n"
-                    + "  nmcust,\n"
-                    + "  alamat,\n"
-                    + "  kota,\n"
-                    + "  telp,\n"
+                    + "  kd_tabung,\n"
+                    + "  jenis_tabung,\n"
+                    + "  harga,\n"
                     + "  keterangan\n"
-                    + "FROM kkp.m05cust \n"
-                    + "WHERE kdcust LIKE ?"
-                    + "AND nmcust LIKE ?"
+                    + "FROM kkp.m03tabu \n"
+                    + "WHERE kd_tabung LIKE ?"
+                    + "AND jenis_tabung LIKE ?"
 //                    + "AND Merek_Customer LIKE ?"
 //                    + "AND Satuan LIKE ?"
 //                    + "AND Harga LIKE ?"
                     );
             
-            stm.setString(1, "%" + getKdcust()+ "%");
-            stm.setString(2, "%" + getNmcust()+ "%");
+            stm.setString(1, "%" + getKd_tabung()+ "%");
+            stm.setString(2, "%" + getJenis_tabung()+ "%");
 //            stm.setString(3, "%" + getMerek() + "%");
 //            stm.setString(4, "%" + getSatuan() + "%");
 //            stm.setString(5, "%" + getHarga() + "%");
@@ -187,27 +185,23 @@ public class M03tabuCtrl extends M03tabu{
 
             ResultSet rs = stm.executeQuery();
 
-            DefaultTableModel mdlCust = new DefaultTableModel();
-            mdlCust.addColumn("KODE");
-            mdlCust.addColumn("NAMA");
-            mdlCust.addColumn("ALAMAT");
-            mdlCust.addColumn("KOTA");
-            mdlCust.addColumn("TELEPON");
-            mdlCust.addColumn("KETERANGAN");
+            DefaultTableModel mdlTabu = new DefaultTableModel();
+            mdlTabu.addColumn("KODE");
+            mdlTabu.addColumn("JENIS TABUNG");
+            mdlTabu.addColumn("HARGA JUAL");
+            mdlTabu.addColumn("KETERANGAN");
 
-            Object[] os = new Object[6];
+            Object[] os = new Object[4];
             while (rs.next()) {
-                os[0] = rs.getString("kdcust");
-                os[1] = rs.getString("nmcust");
-                os[2] = rs.getString("alamat");
-                os[3] = rs.getString("kota");
-                os[4] = rs.getString("telp");
-                os[5] = rs.getString("keterangan");
-                mdlCust.addRow(os);
+                os[0] = rs.getString("kd_tabung");
+                os[1] = rs.getString("jenis_tabung");
+                os[2] = rs.getString("harga");
+                os[3] = rs.getString("keterangan");
+                mdlTabu.addRow(os);
             }
-            return mdlCust;
+            return mdlTabu;
         } catch (SQLException ex) {
-            Logger.getLogger(M05custCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(M03tabuCtrl.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
     }
