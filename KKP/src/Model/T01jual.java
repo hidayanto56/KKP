@@ -16,13 +16,9 @@ public class T01jual {
     Long t01_id;
     Date tanggal;
     Integer tipe;
-    M03tabu m03tabu;
-    M05cust m05cust;
-    M04supl m04supl;
-    Long m03_id;
-    Long m04_id;
-    Long m05_id;
     Double jumlah;
+    String kd_tabung;
+    String kdsupl;
     String keterangan;
     Long version;
     String created_by;
@@ -54,60 +50,28 @@ public class T01jual {
         this.tipe = tipe;
     }
 
-    public M03tabu getM03tabu() {
-        return m03tabu;
-    }
-
-    public void setM03tabu(M03tabu m03tabu) {
-        this.m03tabu = m03tabu;
-    }
-
-    public M05cust getM05cust() {
-        return m05cust;
-    }
-
-    public void setM05cust(M05cust m05cust) {
-        this.m05cust = m05cust;
-    }
-
-    public M04supl getM04supl() {
-        return m04supl;
-    }
-
-    public void setM04supl(M04supl m04supl) {
-        this.m04supl = m04supl;
-    }
-
-    public Long getM03_id() {
-        return m03_id;
-    }
-
-    public void setM03_id(Long m03_id) {
-        this.m03_id = m03_id;
-    }
-
-    public Long getM04_id() {
-        return m04_id;
-    }
-
-    public void setM04_id(Long m04_id) {
-        this.m04_id = m04_id;
-    }
-
-    public Long getM05_id() {
-        return m05_id;
-    }
-
-    public void setM05_id(Long m05_id) {
-        this.m05_id = m05_id;
-    }
-
     public Double getJumlah() {
         return jumlah;
     }
 
     public void setJumlah(Double jumlah) {
         this.jumlah = jumlah;
+    }
+
+    public String getKd_tabung() {
+        return kd_tabung;
+    }
+
+    public void setKd_tabung(String kd_tabung) {
+        this.kd_tabung = kd_tabung;
+    }
+
+    public String getKdsupl() {
+        return kdsupl;
+    }
+
+    public void setKdsupl(String kdsupl) {
+        this.kdsupl = kdsupl;
     }
 
     public String getKeterangan() {
@@ -157,7 +121,7 @@ public class T01jual {
     public void setUpdated_on(Date updated_on) {
         this.updated_on = updated_on;
     }
-    
+
 
     
 }

@@ -14,7 +14,8 @@ import java.util.Date;
 public class T02beli {
     Long t03_id;
     Date tanggal;
-    Long m03_id;
+    String kd_tabung;
+    String kdsupl;
     Integer jumlah;
     String keterangan;
     Long version;
@@ -39,12 +40,20 @@ public class T02beli {
         this.tanggal = tanggal;
     }
 
-    public Long getM03_id() {
-        return m03_id;
+    public String getKd_tabung() {
+        return kd_tabung;
     }
 
-    public void setM03_id(Long m03_id) {
-        this.m03_id = m03_id;
+    public void setKd_tabung(String kd_tabung) {
+        this.kd_tabung = kd_tabung;
+    }
+
+    public String getKdsupl() {
+        return kdsupl;
+    }
+
+    public void setKdsupl(String kdsupl) {
+        this.kdsupl = kdsupl;
     }
 
     public Integer getJumlah() {
@@ -102,8 +111,7 @@ public class T02beli {
     public void setUpdated_on(Date updated_on) {
         this.updated_on = updated_on;
     }
-    
-    
+
     
     
 }
