@@ -444,7 +444,7 @@ public class T01jualView extends javax.swing.JInternalFrame {
                         cb.setKd_tabung(cmbKdTabung.getSelectedItem().toString());
                         cb.setKdcust(cmbKdCust.getSelectedItem().toString());
                         if(txtJumlah.getText() != null){
-                            cb.setJumlah(Double.valueOf(txtJumlah.getText()));
+                            cb.setJumlah(Double.parseDouble(txtJumlah.getText()));
                         }else{
                             cb.setJumlah(new Double(0));
                         }
@@ -468,7 +468,7 @@ public class T01jualView extends javax.swing.JInternalFrame {
                         DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
                         Date date = format.parse(tanggal);
             
-                        cbm.setTanggal(date);
+                        cbm.setTanggal((java.sql.Date) date);
                         cbm.setKd_tabung(cmbKdTabung.getSelectedItem().toString());
                         cbm.setKdcust(cmbKdCust.getSelectedItem().toString());
                         //        cbm.setSatuan(txtSatuan.getText());
@@ -490,7 +490,7 @@ public class T01jualView extends javax.swing.JInternalFrame {
             Logger.getLogger(T01jualView.class.getName()).log(Level.SEVERE, null, ex);
         }
             
-                cb.setTanggal(date);
+                cb.setTanggal((java.sql.Date) date);
                 cb.setKd_tabung(cmbKdTabung.getSelectedItem().toString());
                 cb.setKdcust(cmbKdCust.getSelectedItem().toString());
                 cb.setJumlah(Double.valueOf(txtJumlah.getText()));
