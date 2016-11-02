@@ -34,16 +34,18 @@ public class T01jualCtrl  extends T01jual{
         try {
             MySQLConn conn = new MySQLConn();
 
-            PreparedStatement stm = conn.connect("SELECT kd_tabung FROM m03tabu");
+            PreparedStatement stm = conn.connect("SELECT m03_id, kd_tabung FROM m03tabu");
 
             ResultSet rs = stm.executeQuery();
 
             DefaultTableModel mdlCust = new DefaultTableModel();
+            mdlCust.addColumn("M03_ID");
             mdlCust.addColumn("KODE");
 
-            Object[] os = new Object[1];
+            Object[] os = new Object[2];
             while (rs.next()) {
-                os[0] = rs.getString("kd_tabung");
+                os[0] = rs.getString("m03_id");
+                os[1] = rs.getString("kd_tabung");
                 mdlCust.addRow(os);
             }
             

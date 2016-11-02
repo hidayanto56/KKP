@@ -9,12 +9,12 @@ package View;
  *
  * @author Thinkpad
  */
-public class T02beliView extends javax.swing.JInternalFrame {
+public class T03stokView extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form T02beliView
+     * Creates new form T03stokView
      */
-    public T02beliView() {
+    public T03stokView() {
         initComponents();
     }
 
@@ -37,7 +37,7 @@ public class T02beliView extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 571, Short.MAX_VALUE)
+            .addGap(0, 572, Short.MAX_VALUE)
         );
 
         pack();
