@@ -13,39 +13,24 @@ import java.util.Date;
  * @author Thinkpad
  */
 public class M04supl {
-    BigInteger m04_id;
+    Long m04_id;
     String kdsup;
     String nmsup;
     String alamat;
     String kota;
     String telp;
     String keterangan;
-    BigInteger version;
+    Long version;
     String created_by;
     Date created_on;
     String updated_by;
     Date updated_on;
 
-//    public M04supl(BigInteger m04_id, String kdsup, String nmsup, String alamat, String kota, String telp, String keterangan, BigInteger version, String created_by, Date created_on, String updated_by, Date updated_on) {
-//        this.m04_id = m04_id;
-//        this.kdsup = kdsup;
-//        this.nmsup = nmsup;
-//        this.alamat = alamat;
-//        this.kota = kota;
-//        this.telp = telp;
-//        this.keterangan = keterangan;
-//        this.version = version;
-//        this.created_by = created_by;
-//        this.created_on = created_on;
-//        this.updated_by = updated_by;
-//        this.updated_on = updated_on;
-//    }
-
-    public BigInteger getM04_id() {
+    public Long getM04_id() {
         return m04_id;
     }
 
-    public void setM04_id(BigInteger m04_id) {
+    public void setM04_id(Long m04_id) {
         this.m04_id = m04_id;
     }
 
@@ -97,11 +82,11 @@ public class M04supl {
         this.keterangan = keterangan;
     }
 
-    public BigInteger getVersion() {
+    public Long getVersion() {
         return version;
     }
 
-    public void setVersion(BigInteger version) {
+    public void setVersion(Long version) {
         this.version = version;
     }
 

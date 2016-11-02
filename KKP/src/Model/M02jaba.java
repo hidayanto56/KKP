@@ -13,33 +13,21 @@ import java.util.Date;
  * @author Thinkpad
  */
 public class M02jaba {
-    BigInteger m02_id;
+    Long m02_id;
     String kdjab;
     String nmjab;       
     String keterangan;
-    BigInteger version;
+    Long version;
     String created_by;
     Date created_on;
     String updated_by;
     Date updated_on;
 
-//    public M02jaba(BigInteger m02_id, String kdjab, String nmjab, String keterangan, BigInteger version, String created_by, Date created_on, String updated_by, Date updated_on) {
-//        this.m02_id = m02_id;
-//        this.kdjab = kdjab;
-//        this.nmjab = nmjab;
-//        this.keterangan = keterangan;
-//        this.version = version;
-//        this.created_by = created_by;
-//        this.created_on = created_on;
-//        this.updated_by = updated_by;
-//        this.updated_on = updated_on;
-//    }
-
-    public BigInteger getM02_id() {
+    public Long getM02_id() {
         return m02_id;
     }
 
-    public void setM02_id(BigInteger m02_id) {
+    public void setM02_id(Long m02_id) {
         this.m02_id = m02_id;
     }
 
@@ -67,11 +55,11 @@ public class M02jaba {
         this.keterangan = keterangan;
     }
 
-    public BigInteger getVersion() {
+    public Long getVersion() {
         return version;
     }
 
-    public void setVersion(BigInteger version) {
+    public void setVersion(Long version) {
         this.version = version;
     }
 
@@ -106,6 +94,7 @@ public class M02jaba {
     public void setUpdated_on(Date updated_on) {
         this.updated_on = updated_on;
     }
+
 
     
 }

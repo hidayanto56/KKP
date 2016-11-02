@@ -13,39 +13,24 @@ import java.util.Date;
  * @author Thinkpad
  */
 public class M05cust {
-    BigInteger m05_id;
+    Long m05_id;
     String kdcust;
     String nmcust;
     String alamat;
     String kota;  
     String telp;
     String keterangan;
-    BigInteger version;
+    Long version;
     String created_by;
     Date created_on;
     String updated_by;
     Date updated_on;
 
-//    public M05cust(BigInteger m05_id, String kdcust, String nmcust, String alamat, String kota, String telp, String keterangan, BigInteger version, String created_by, Date created_on, String updated_by, Date updated_on) {
-//        this.m05_id = m05_id;
-//        this.kdcust = kdcust;
-//        this.nmcust = nmcust;
-//        this.alamat = alamat;
-//        this.kota = kota;
-//        this.telp = telp;
-//        this.keterangan = keterangan;
-//        this.version = version;
-//        this.created_by = created_by;
-//        this.created_on = created_on;
-//        this.updated_by = updated_by;
-//        this.updated_on = updated_on;
-//    }
-
-    public BigInteger getM05_id() {
+    public Long getM05_id() {
         return m05_id;
     }
 
-    public void setM05_id(BigInteger m05_id) {
+    public void setM05_id(Long m05_id) {
         this.m05_id = m05_id;
     }
 
@@ -97,11 +82,11 @@ public class M05cust {
         this.keterangan = keterangan;
     }
 
-    public BigInteger getVersion() {
+    public Long getVersion() {
         return version;
     }
 
-    public void setVersion(BigInteger version) {
+    public void setVersion(Long version) {
         this.version = version;
     }
 
@@ -137,5 +122,5 @@ public class M05cust {
         this.updated_on = updated_on;
     }
 
-    
+ 
 }

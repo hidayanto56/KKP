@@ -7,8 +7,6 @@ package Control;
 
 import Model.T01jual;
 import java.io.File;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -135,8 +133,8 @@ public class T01jualCtrl  extends T01jual{
             PreparedStatement stm = conn.connect("INSERT INTO kkp.t01jual (tanggal, m03_id, m05_id, jumlah, keterangan)\n" +
                                 "VALUES (?,?,?,?,?);");
             
-//            stm.setDate(1, (Date) getTanggal());
-//            stm.setLong(2, Long.valueOf(getM03_id()));
+            stm.setDate(1, (Date) getTanggal());
+            stm.setLong(2, getM03_id());
 //            stm.setString(3, getM05_id());
 //            stm.setDouble(4, getJumlah());
 //            stm.setString(5, getKeterangan());
@@ -234,7 +232,7 @@ public class T01jualCtrl  extends T01jual{
             MySQLConn conn = new MySQLConn();
             PreparedStatement stm = conn.connect("DELETE FROM t01jual WHERE t01_id = ?;");
             
-//            stm.setString(1, getT01_id());
+            stm.setLong(1, getT01_id());
 //            stm.setString(2, getNmcust());
             
             stm.executeUpdate();
@@ -251,14 +249,19 @@ public class T01jualCtrl  extends T01jual{
     public void editPenjualan() {
         try {
             MySQLConn conn = new MySQLConn();
-            PreparedStatement stm = conn.connect("UPDATE  t01jual SET tanggal = ?, m03_id = ?, m05_id = ?, jumlah = ? keterangan = ?\n" +
+            PreparedStatement stm = conn.connect("UPDATE  t01jual SET "
+                    + "tanggal = ?, "
+                    + "m03_id = ?, "
+                    + "m05_id = ?, "
+                    + "jumlah = ? "
+                    + "keterangan = ?\n" +
                     "WHERE t01_id = ?;");
-//            stm.setString(1, getAlamat());
-//            stm.setString(2, getKota());
-//            stm.setString(3, getTelp());
-//            stm.setString(4, getKeterangan());
-//            stm.setString(5, getKdcust());
-//            stm.setString(6, getNmcust());
+            stm.setDate(1, (Date) getTanggal());
+            stm.setLong(2, getM03_id());
+            stm.setLong(3, getM05_id());
+            stm.setDouble(4, getJumlah());
+            stm.setString(5, getKeterangan());
+            stm.setLong(6, getT01_id());
 
             stm.executeUpdate();
 

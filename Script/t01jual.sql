@@ -26,3 +26,6 @@ DELETE FROM t01jual WHERE t01_id = ?;
 
 UPDATE  t01jual SET tanggal = ?, m03_id = ?, m05_id = ?, jumlah = ? keterangan = ?
 WHERE t01_id = ?;
+
+INSERT INTO kkp.t01jual (tanggal, m03_id, m05_id, jumlah, keterangan)
+VALUES (?,?,?,?,?);

@@ -13,35 +13,22 @@ import java.util.Date;
  * @author Thinkpad
  */
 public class M03tabu {
-    BigInteger m03_id;
+    Long m03_id;
     String kd_tabung;
     String jenis_tabung;
     Double harga;
     String keterangan;
-    BigInteger version;
+    Long version;
     String created_by;
     Date created_on;
     String updated_by;
     Date updated_on;
 
-//    public M03tabu(BigInteger m03_id, String kd_tabung, String jenis_tabung, Double harga, String keterangan, BigInteger version, String created_by, Date created_on, String updated_by, Date updated_on) {
-//        this.m03_id = m03_id;
-//        this.kd_tabung = kd_tabung;
-//        this.jenis_tabung = jenis_tabung;
-//        this.harga = harga;
-//        this.keterangan = keterangan;
-//        this.version = version;
-//        this.created_by = created_by;
-//        this.created_on = created_on;
-//        this.updated_by = updated_by;
-//        this.updated_on = updated_on;
-//    }
-
-    public BigInteger getM03_id() {
+    public Long getM03_id() {
         return m03_id;
     }
 
-    public void setM03_id(BigInteger m03_id) {
+    public void setM03_id(Long m03_id) {
         this.m03_id = m03_id;
     }
 
@@ -77,11 +64,11 @@ public class M03tabu {
         this.keterangan = keterangan;
     }
 
-    public BigInteger getVersion() {
+    public Long getVersion() {
         return version;
     }
 
-    public void setVersion(BigInteger version) {
+    public void setVersion(Long version) {
         this.version = version;
     }
 
@@ -116,7 +103,7 @@ public class M03tabu {
     public void setUpdated_on(Date updated_on) {
         this.updated_on = updated_on;
     }
-    
+
     
     
 }

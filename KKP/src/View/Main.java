@@ -38,9 +38,9 @@ public class Main extends javax.swing.JFrame {
         dpMain.add(t01viewjual);
         t01viewjual.setVisible(false);
         
-        m03view = new M03tabuView();
-        dpMain.add(m03view);
-        m03view.setVisible(false);
+//        m03view = new M03tabuView();
+//        dpMain.add(m03view);
+//        m03view.setVisible(false);
         
         
     }
@@ -264,7 +264,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        m03view.setVisible(true);
+//        m03view.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**

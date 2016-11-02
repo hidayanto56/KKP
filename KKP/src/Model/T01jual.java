@@ -13,29 +13,28 @@ import java.util.Date;
  * @author Thinkpad
  */
 public class T01jual {
-    BigInteger t01_id;
+    Long t01_id;
     Date tanggal;
     Integer tipe;
     M03tabu m03tabu;
     M05cust m05cust;
     M04supl m04supl;
-    BigInteger m03_id;
-    BigInteger m04_id;
-    BigInteger m05_id;
+    Long m03_id;
+    Long m04_id;
+    Long m05_id;
     Double jumlah;
     String keterangan;
-    BigInteger version;
+    Long version;
     String created_by;
     Date created_on;
     String updated_by;
     Date updated_on;
-    
 
-    public BigInteger getT01_id() {
+    public Long getT01_id() {
         return t01_id;
     }
 
-    public void setT01_id(BigInteger t01_id) {
+    public void setT01_id(Long t01_id) {
         this.t01_id = t01_id;
     }
 
@@ -79,27 +78,27 @@ public class T01jual {
         this.m04supl = m04supl;
     }
 
-    public BigInteger getM03_id() {
-        return m03tabu.getM03_id();
+    public Long getM03_id() {
+        return m03_id;
     }
 
-    public void setM03_id(BigInteger m03_id) {
+    public void setM03_id(Long m03_id) {
         this.m03_id = m03_id;
     }
 
-    public BigInteger getM04_id() {
-        return m04supl.getM04_id();
+    public Long getM04_id() {
+        return m04_id;
     }
 
-    public void setM04_id(BigInteger m04_id) {
+    public void setM04_id(Long m04_id) {
         this.m04_id = m04_id;
     }
 
-    public BigInteger getM05_id() {
-        return m05cust.getM05_id();
+    public Long getM05_id() {
+        return m05_id;
     }
 
-    public void setM05_id(BigInteger m05_id) {
+    public void setM05_id(Long m05_id) {
         this.m05_id = m05_id;
     }
 
@@ -119,11 +118,11 @@ public class T01jual {
         this.keterangan = keterangan;
     }
 
-    public BigInteger getVersion() {
+    public Long getVersion() {
         return version;
     }
 
-    public void setVersion(BigInteger version) {
+    public void setVersion(Long version) {
         this.version = version;
     }
 
@@ -158,6 +157,7 @@ public class T01jual {
     public void setUpdated_on(Date updated_on) {
         this.updated_on = updated_on;
     }
+    
 
     
 }
