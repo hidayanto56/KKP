@@ -41,10 +41,14 @@ CREATE TABLE `m01pega` (
   `updated_by` varchar(20) DEFAULT NULL,
   `updated_on` datetime DEFAULT NULL,
   PRIMARY KEY (`m01_id`,`nik`),
-  UNIQUE KEY `nik` (`nik`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  UNIQUE KEY `nik` (`nik`),
+  KEY `kdjab` (`kdjab`),
+  CONSTRAINT `m01pega_ibfk_1` FOREIGN KEY (`kdjab`) REFERENCES `m02jaba` (`kdjab`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `m01pega` */
+
+insert  into `m01pega`(`m01_id`,`nik`,`nama`,`username`,`password`,`gender`,`status`,`telepon`,`alamat`,`agama`,`tgllahir`,`email`,`tglmasuk`,`kdjab`,`version`,`created_by`,`created_on`,`updated_by`,`updated_on`) values (1,'A001','Admin','a','a','L','a','0873465837','admin','admin',NULL,NULL,NULL,'admin',NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `m02jaba` */
 
@@ -62,9 +66,11 @@ CREATE TABLE `m02jaba` (
   `updated_on` datetime DEFAULT NULL,
   PRIMARY KEY (`m02_id`,`kdjab`),
   UNIQUE KEY `kdjab` (`kdjab`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin2;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin2;
 
 /*Data for the table `m02jaba` */
+
+insert  into `m02jaba`(`m02_id`,`kdjab`,`nmjab`,`keterangan`,`version`,`created_by`,`created_on`,`updated_by`,`updated_on`) values (1,'admin','admin','admin',NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `m03tabu` */
 
