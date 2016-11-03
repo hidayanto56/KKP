@@ -31,7 +31,7 @@ public class T02beliView extends javax.swing.JInternalFrame {
 //        txtTanggal.setBorder(;
 
         T02beliCtrl t02 = new T02beliCtrl();
-        tblDistJual.setModel(t02.getDaftarTransaksiBeli());
+        tblDistBeli.setModel(t02.getDaftarTransaksiBeli());
 //        setEditStatus(false);
         setVisible(true);
 
@@ -55,7 +55,7 @@ public class T02beliView extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblDistJual = new javax.swing.JTable();
+        tblDistBeli = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         txtTanggal = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -64,7 +64,7 @@ public class T02beliView extends javax.swing.JInternalFrame {
         txtHarga = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtNmCust = new javax.swing.JTextField();
+        txtNmSupl = new javax.swing.JTextField();
         txtNmTabung = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -87,7 +87,7 @@ public class T02beliView extends javax.swing.JInternalFrame {
 
         setClosable(true);
 
-        tblDistJual.setModel(new javax.swing.table.DefaultTableModel(
+        tblDistBeli.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -98,7 +98,7 @@ public class T02beliView extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tblDistJual);
+        jScrollPane1.setViewportView(tblDistBeli);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel2.setPreferredSize(new java.awt.Dimension(270, 232));
@@ -116,7 +116,7 @@ public class T02beliView extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel6.setText("Nama Customer");
+        jLabel6.setText("Nama Supplier");
 
         jLabel2.setText("Kode Tabung");
 
@@ -124,11 +124,11 @@ public class T02beliView extends javax.swing.JInternalFrame {
 
         txtHarga.setPreferredSize(new java.awt.Dimension(140, 20));
 
-        jLabel5.setText("Kode Customer");
+        jLabel5.setText("Kode Supplier");
 
         jLabel3.setText("Nama Tabung");
 
-        txtNmCust.setPreferredSize(new java.awt.Dimension(140, 20));
+        txtNmSupl.setPreferredSize(new java.awt.Dimension(140, 20));
 
         txtNmTabung.setPreferredSize(new java.awt.Dimension(140, 20));
         txtNmTabung.addActionListener(new java.awt.event.ActionListener() {
@@ -186,30 +186,26 @@ public class T02beliView extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(30, 30, 30)
-                        .addComponent(jScrollPane2))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel9))
-                        .addGap(10, 10, 10)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtJumlah, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtTanggal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtHarga, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtNmTabung, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtNmCust, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cmbKdTabung, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cmbKdSupl, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel8))
+                .addGap(10, 10, 10)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
+                    .addComponent(txtID, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                    .addComponent(txtJumlah, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtTanggal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtHarga, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtNmTabung, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtNmSupl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cmbKdTabung, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cmbKdSupl, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -242,7 +238,7 @@ public class T02beliView extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(txtNmCust, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNmSupl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -436,7 +432,7 @@ public class T02beliView extends javax.swing.JInternalFrame {
             cb.tambahTransaksiBeli();
 
             btnClearActionPerformed(evt);
-            tblDistJual.setModel(cb.getDaftarTransaksiBeli());
+            tblDistBeli.setModel(cb.getDaftarTransaksiBeli());
 
         } else {
             JOptionPane.showInternalMessageDialog(this, "Tanggal tidak boleh kosong", "Error",
@@ -457,58 +453,148 @@ public class T02beliView extends javax.swing.JInternalFrame {
             cbm.setKdsupl(cmbKdSupl.getSelectedItem().toString());
             //        cbm.setSatuan(txtSatuan.getText());
             //        cbm.setHarga(Integer.parseInt(txtHarga.getText()));
-            tblDistJual.setModel(cbm.getCariTransaksiBeli());
+            tblDistBeli.setModel(cbm.getCariTransaksiBeli());
         } catch (ParseException ex) {
             Logger.getLogger(T02beliView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnCariActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-        //        M05custCtrl cb = new M05custCtrl();
-        //        cb.setKdcust(txtTanggal.getText());
-        //        cb.setNmcust(txtNmCust.getText());
-        //        cb.setAlamat(txtNmTabung.getText());
-        //        cb.setKota(txtHarga.getText());
-        //        cb.setTelp(txtTelp.getText());
-        //        cb.setKeterangan(txtNmCust.getText());
-        //        cb.editCustomer();
-        //
-        //        setEditStatus(false);
-        //        btnClearActionPerformed(evt);
-        //
-        //        M05custCtrl cb2 = new M05custCtrl();
-        //        tblCustomer.setModel(cb2.getDaftarCustomer());
+        T02beliCtrl cb = new T02beliCtrl();
+        String tanggal = txtTanggal.getText();
+        DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+        Date date = null;
+        try {
+            date = format.parse(tanggal);
+        } catch (ParseException ex) {
+            Logger.getLogger(T02beliView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        cb.setTanggal((java.sql.Date) date);
+//        cb.setTanggal(txtTanggal.getText());
+        cb.setKd_tabung(cmbKdTabung.getSelectedItem().toString());
+        if (txtJumlah.getText() != null) {
+            cb.setJumlah(Integer.parseInt(txtJumlah.getText()));
+        } else {
+            cb.setJumlah(0);
+        }
+        cb.setKeterangan(txtKeterangan.getText());
+        cb.editPembelian();
+
+        setEditStatus(false);
+        btnClearActionPerformed(evt);
+
+        T02beliCtrl cb2 = new T02beliCtrl();
+        tblDistBeli.setModel(cb2.getDaftarTransaksiBeli());
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
-        //        clearText();
+        clearText();
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
-        //        M05custCtrl cb = new M05custCtrl();
-        //        cb.printCustomer();
+        T02beliCtrl cb = new T02beliCtrl();
+        cb.printPembelian();
     }//GEN-LAST:event_btnPrintActionPerformed
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
-        //        M05custCtrl cb = new M05custCtrl();
-        //        cb.setKdcust(txtTanggal.getText());
-        //        cb.setNmcust(txtNmCust.getText());
-        //        cb.hapusCustomer();
-        //
-        //        setHapusStatus(false);
-        //        btnClearActionPerformed(evt);
-        //
-        //        M05custCtrl cb2 = new M05custCtrl();
-        //        tblCustomer.setModel(cb2.getDaftarCustomer());
+        T02beliCtrl cb = new T02beliCtrl();
+        cb.setT02_id(Long.parseLong(txtID.getText()));
+        cb.hapusPembelian();
+
+        setHapusStatus(false);
+        btnClearActionPerformed(evt);
+
+        T02beliCtrl cb2 = new T02beliCtrl();
+        tblDistBeli.setModel(cb2.getDaftarTransaksiBeli());
     }//GEN-LAST:event_btnHapusActionPerformed
 
     private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
-        //        setEditStatus(false);
-        //        btnClearActionPerformed(evt);
-        //        M05custCtrl cb = new M05custCtrl();
-        //        tblCustomer.setModel(cb.getDaftarCustomer());
+        setEditStatus(false);
+        btnClearActionPerformed(evt);
+        T02beliCtrl cb = new T02beliCtrl();
+        tblDistBeli.setModel(cb.getDaftarTransaksiBeli());
     }//GEN-LAST:event_btnBatalActionPerformed
 
+    private void setEditStatus(boolean status) {
+        if (status == false) {
+            btnCari.setEnabled(true);
+            btnTambah.setEnabled(true);
+            btnHapus.setEnabled(true);
+            btnEdit.setEnabled(false);
+            btnBatal.setEnabled(true);
+            txtTanggal.setEditable(false);
+            cmbKdTabung.setEnabled(false);
+            txtNmTabung.setEditable(false);
+            txtHarga.setEditable(false);
+            cmbKdSupl.setEnabled(false);
+            txtNmSupl.setEditable(false);
+            txtJumlah.setEditable(false);
+            txtKeterangan.setEditable(false);
+
+        } else {
+            btnCari.setEnabled(false);
+            btnTambah.setEnabled(false);
+            btnHapus.setEnabled(true);
+            btnEdit.setEnabled(true);
+            btnBatal.setEnabled(true);
+            txtTanggal.setEditable(true);
+            cmbKdTabung.setEnabled(true);
+            txtNmTabung.setEditable(true);
+            txtHarga.setEditable(true);
+            cmbKdSupl.setEnabled(true);
+            txtNmSupl.setEditable(true);
+            txtJumlah.setEditable(false);
+            txtKeterangan.setEditable(false);
+
+        }
+    }
+
+    private void clearText() {
+        txtID.setText("");
+        txtTanggal.setText(new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
+        txtNmTabung.setText("");
+        txtHarga.setText("");
+        txtNmSupl.setText("");
+        txtJumlah.setText("");
+        txtKeterangan.setText("");
+    }
+
+    private void setHapusStatus(boolean status) {
+        if (status == false) {
+            btnCari.setEnabled(true);
+            btnTambah.setEnabled(true);
+            btnClear.setEnabled(true);
+            btnEdit.setEnabled(false);
+            btnHapus.setEnabled(false);
+            btnBatal.setEnabled(false);
+            txtTanggal.setEditable(true);
+            cmbKdTabung.setEnabled(true);
+            txtNmTabung.setEditable(true);
+            txtHarga.setEditable(true);
+            cmbKdSupl.setEnabled(true);
+            txtNmSupl.setEditable(true);
+            txtJumlah.setEditable(true);
+            txtKeterangan.setEditable(true);
+
+        } else {
+            btnCari.setEnabled(false);
+            btnTambah.setEnabled(false);
+            btnClear.setEnabled(false);
+            btnEdit.setEnabled(true);
+            btnHapus.setEnabled(true);
+            btnBatal.setEnabled(true);
+            txtTanggal.setEditable(false);
+            cmbKdTabung.setEnabled(false);
+            txtNmTabung.setEditable(false);
+            txtHarga.setEditable(false);
+            cmbKdSupl.setEnabled(false);
+            txtNmSupl.setEditable(false);
+            txtJumlah.setEditable(false);
+            txtKeterangan.setEditable(false);
+
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBatal;
@@ -533,12 +619,12 @@ public class T02beliView extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable tblDistJual;
+    private javax.swing.JTable tblDistBeli;
     private javax.swing.JTextField txtHarga;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtJumlah;
     private javax.swing.JTextArea txtKeterangan;
-    private javax.swing.JTextField txtNmCust;
+    private javax.swing.JTextField txtNmSupl;
     private javax.swing.JTextField txtNmTabung;
     private javax.swing.JTextField txtTanggal;
     // End of variables declaration//GEN-END:variables

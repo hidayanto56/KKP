@@ -5,6 +5,16 @@
  */
 package View;
 
+import Control.T01jualCtrl;
+import Control.T03stokCtrl;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Thinkpad
@@ -16,6 +26,23 @@ public class T03stokView extends javax.swing.JInternalFrame {
      */
     public T03stokView() {
         initComponents();
+        txtID.setEditable(false);
+        txtTanggal.setText(new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
+//        txtTanggal.setBorder(;
+
+        T03stokCtrl t01 = new T03stokCtrl();
+        tblStok.setModel(t01.getDaftarStok());
+//        setEditStatus(false);
+        setVisible(true);
+
+        for (int i = 0; i < t01.getKodeTabung().getRowCount(); i++) {
+            cmbKdTabung.addItem(t01.getKodeTabung().getValueAt(i, 0));
+
+        }
+//        for (int i=0; i < t01.getKodeCustomer().getRowCount(); i++){
+//            cmbKdCust.addItem(t01.getKodeCustomer().getValueAt(i, 0));
+//        }
+
     }
 
     /**
@@ -28,23 +55,19 @@ public class T03stokView extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblDistJual = new javax.swing.JTable();
+        tblStok = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         txtTanggal = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         txtHarga = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtNmCust = new javax.swing.JTextField();
         txtNmTabung = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         txtJumlah = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         cmbKdTabung = new javax.swing.JComboBox();
-        cmbKdCust = new javax.swing.JComboBox();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtKeterangan = new javax.swing.JTextArea();
         jLabel9 = new javax.swing.JLabel();
@@ -60,7 +83,7 @@ public class T03stokView extends javax.swing.JInternalFrame {
 
         setClosable(true);
 
-        tblDistJual.setModel(new javax.swing.table.DefaultTableModel(
+        tblStok.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -71,7 +94,7 @@ public class T03stokView extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tblDistJual);
+        jScrollPane1.setViewportView(tblStok);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel2.setPreferredSize(new java.awt.Dimension(270, 232));
@@ -89,19 +112,13 @@ public class T03stokView extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel6.setText("Nama Customer");
-
         jLabel2.setText("Kode Tabung");
 
         jLabel1.setText("Tanggal");
 
         txtHarga.setPreferredSize(new java.awt.Dimension(140, 20));
 
-        jLabel5.setText("Kode Customer");
-
         jLabel3.setText("Nama Tabung");
-
-        txtNmCust.setPreferredSize(new java.awt.Dimension(140, 20));
 
         txtNmTabung.setPreferredSize(new java.awt.Dimension(140, 20));
         txtNmTabung.addActionListener(new java.awt.event.ActionListener() {
@@ -121,12 +138,6 @@ public class T03stokView extends javax.swing.JInternalFrame {
         cmbKdTabung.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbKdTabungActionPerformed(evt);
-            }
-        });
-
-        cmbKdCust.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbKdCustActionPerformed(evt);
             }
         });
 
@@ -165,24 +176,20 @@ public class T03stokView extends javax.swing.JInternalFrame {
                         .addComponent(jScrollPane2))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel5)
                             .addComponent(jLabel4)
                             .addComponent(jLabel3)
                             .addComponent(jLabel2)
                             .addComponent(jLabel1)
                             .addComponent(jLabel7)
                             .addComponent(jLabel9))
-                        .addGap(10, 10, 10)
+                        .addGap(20, 20, 20)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtJumlah, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtTanggal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtHarga, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtNmTabung, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtNmCust, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cmbKdTabung, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cmbKdCust, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(cmbKdTabung, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -208,15 +215,7 @@ public class T03stokView extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtHarga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(cmbKdCust, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtNmCust, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(94, 94, 94)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(txtJumlah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -359,7 +358,7 @@ public class T03stokView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtTanggalActionPerformed
 
     private void txtTanggalKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTanggalKeyReleased
-        txtTanggal.setText(txtTanggal.getText().toUpperCase());
+//        txtTanggal.setText(txtTanggal.getText().toUpperCase());
     }//GEN-LAST:event_txtTanggalKeyReleased
 
     private void txtNmTabungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNmTabungActionPerformed
@@ -370,10 +369,6 @@ public class T03stokView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbKdTabungActionPerformed
 
-    private void cmbKdCustActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbKdCustActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbKdCustActionPerformed
-
     private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIDActionPerformed
@@ -383,92 +378,181 @@ public class T03stokView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtIDKeyReleased
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
-        //        if(!txtTanggal.getText().equals("") || !txtNmCust.getText().equals("")){
-            //            T01 cb = new M05custCtrl();
-            //            cb.setKdcust(txtTanggal.getText());
-            //            cb.setNmcust(txtNmCust.getText());
-            //            cb.setAlamat(txtNmTabung.getText());
-            //            cb.setKota(txtHarga.getText());
-            //            cb.setTelp(txtTelp.getText());
-            //            cb.setKeterangan(txtNmCust.getText());
-            //            cb.tambahCustomer();
-            //
-            //            btnClearActionPerformed(evt);
-            //            tblCustomer.setModel(cb.getDaftarCustomer());
-            //
-            //        }else{
-            //            JOptionPane.showInternalMessageDialog(this, "Kode Customer dan Nama Customer tidak boleh kosong", "Error", JOptionPane.INFORMATION_MESSAGE);
-            //            //            JOptionPane.showInternalMessageDialog(null,
-                //                //                    "Kode Customer dan Nama Customer harus diisi", "ERROR",
-                //                //                    JOptionPane.INFORMATION_MESSAGE);
-            //        }
+        if (!txtTanggal.getText().equals("") || txtTanggal.getText() != null) {
+            T03stokCtrl cb = new T03stokCtrl();
+            String tanggal = txtTanggal.getText();
+            DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+            Date date = null;
+            try {
+                date = format.parse(tanggal);
+            } catch (ParseException ex) {
+                Logger.getLogger(T03stokView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            cb.setTanggal(date);
+            cb.setKd_tabung(cmbKdTabung.getSelectedItem().toString());
+            if (txtJumlah.getText() != null) {
+                cb.setJumlah(Integer.parseInt(txtJumlah.getText()));
+            } else {
+                cb.setJumlah(0);
+            }
+            cb.setKeterangan(txtKeterangan.getText());
+            cb.tambahStok();
+
+            btnClearActionPerformed(evt);
+            tblStok.setModel(cb.getDaftarStok());
+
+        } else {
+            JOptionPane.showInternalMessageDialog(this, "Tanggal tidak boleh kosong", "Error", JOptionPane.INFORMATION_MESSAGE);
+            //            JOptionPane.showInternalMessageDialog(null,
+            //                    "Kode Customer dan Nama Customer harus diisi", "ERROR",
+            //                    JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_btnTambahActionPerformed
 
     private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
-        //        try {
-            //            T01jualCtrl cbm = new T01jualCtrl();
-            //
-            //            String tanggal = txtTanggal.getText();
-            //            DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-            //            Date date = format.parse(tanggal);
-            //
-            //            cbm.setTanggal(date);
-            //            cbm.setM03_id(BigInteger.valueOf(cmbKdTabung.getSelectedIndex()));
-            //            cbm.setM05_id(BigInteger.valueOf(cmbKdCust.getSelectedIndex()));
-            //            //        cbm.setSatuan(txtSatuan.getText());
-            //            //        cbm.setHarga(Integer.parseInt(txtHarga.getText()));
-            //            tblDistJual.setModel(cbm.getCariTransaksiJual());
-            //        } catch (ParseException ex) {
-            //            Logger.getLogger(T01jualView.class.getName()).log(Level.SEVERE, null, ex);
-            //        }
+        try {
+            T03stokCtrl cbm = new T03stokCtrl();
+
+            String tanggal = txtTanggal.getText();
+            DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+            Date date = format.parse(tanggal);
+
+            cbm.setTanggal(date);
+            cbm.setKd_tabung(cmbKdTabung.getSelectedItem().toString());
+            tblStok.setModel(cbm.getCariStok());
+        } catch (ParseException ex) {
+            Logger.getLogger(T03stokView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnCariActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-        //        M05custCtrl cb = new M05custCtrl();
-        //        cb.setKdcust(txtTanggal.getText());
-        //        cb.setNmcust(txtNmCust.getText());
-        //        cb.setAlamat(txtNmTabung.getText());
-        //        cb.setKota(txtHarga.getText());
-        //        cb.setTelp(txtTelp.getText());
-        //        cb.setKeterangan(txtNmCust.getText());
-        //        cb.editCustomer();
-        //
-        //        setEditStatus(false);
-        //        btnClearActionPerformed(evt);
-        //
-        //        M05custCtrl cb2 = new M05custCtrl();
-        //        tblCustomer.setModel(cb2.getDaftarCustomer());
+        T03stokCtrl cb = new T03stokCtrl();
+        String tanggal = txtTanggal.getText();
+        DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+        Date date = null;
+        try {
+            date = format.parse(tanggal);
+        } catch (ParseException ex) {
+            Logger.getLogger(T03stokView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        cb.setTanggal((java.sql.Date) date);
+        cb.setKd_tabung(cmbKdTabung.getSelectedItem().toString());
+        if (txtJumlah.getText() != null) {
+            cb.setJumlah(Integer.parseInt(txtJumlah.getText()));
+        } else {
+            cb.setJumlah(0);
+        }
+        cb.setKeterangan(txtKeterangan.getText());
+        cb.editStok();
+
+        setEditStatus(false);
+        btnClearActionPerformed(evt);
+
+        T03stokCtrl cb2 = new T03stokCtrl();
+        tblStok.setModel(cb2.getDaftarStok());
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
-        //        clearText();
+        clearText();
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
-        //        M05custCtrl cb = new M05custCtrl();
-        //        cb.printCustomer();
+        T03stokCtrl cb = new T03stokCtrl();
+        cb.printStok();
     }//GEN-LAST:event_btnPrintActionPerformed
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
-        //        M05custCtrl cb = new M05custCtrl();
-        //        cb.setKdcust(txtTanggal.getText());
-        //        cb.setNmcust(txtNmCust.getText());
-        //        cb.hapusCustomer();
-        //
-        //        setHapusStatus(false);
-        //        btnClearActionPerformed(evt);
-        //
-        //        M05custCtrl cb2 = new M05custCtrl();
-        //        tblCustomer.setModel(cb2.getDaftarCustomer());
+        T03stokCtrl cb = new T03stokCtrl();
+        cb.setT03_id(Long.parseLong(txtID.getText()));
+//        cb.setNmcust(txtNmCust.getText());
+        cb.hapusStok();
+
+        setHapusStatus(false);
+        btnClearActionPerformed(evt);
+
+        T03stokCtrl cb2 = new T03stokCtrl();
+        tblStok.setModel(cb2.getDaftarStok());
     }//GEN-LAST:event_btnHapusActionPerformed
 
     private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
-        //        setEditStatus(false);
-        //        btnClearActionPerformed(evt);
-        //        M05custCtrl cb = new M05custCtrl();
-        //        tblCustomer.setModel(cb.getDaftarCustomer());
+        setEditStatus(false);
+        btnClearActionPerformed(evt);
+        T03stokCtrl cb = new T03stokCtrl();
+        tblStok.setModel(cb.getDaftarStok());
     }//GEN-LAST:event_btnBatalActionPerformed
 
+    private void setEditStatus(boolean status) {
+        if (status == false) {
+            btnCari.setEnabled(true);
+            btnTambah.setEnabled(true);
+            btnHapus.setEnabled(true);
+            btnEdit.setEnabled(false);
+            btnBatal.setEnabled(true);
+            txtTanggal.setEditable(false);
+            cmbKdTabung.setEnabled(false);
+            txtNmTabung.setEditable(false);
+            txtHarga.setEditable(false);
+            txtJumlah.setEditable(false);
+            txtKeterangan.setEditable(false);
+
+        } else {
+            btnCari.setEnabled(false);
+            btnTambah.setEnabled(false);
+            btnHapus.setEnabled(true);
+            btnEdit.setEnabled(true);
+            btnBatal.setEnabled(true);
+            txtTanggal.setEditable(true);
+            cmbKdTabung.setEnabled(true);
+            txtNmTabung.setEditable(true);
+            txtHarga.setEditable(true);
+            txtJumlah.setEditable(false);
+            txtKeterangan.setEditable(false);
+
+        }
+    }
+
+    private void clearText() {
+        txtID.setText("");
+        txtTanggal.setText(new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
+        txtNmTabung.setText("");
+        txtHarga.setText("");
+        txtJumlah.setText("");
+        txtKeterangan.setText("");
+    }
+
+    private void setHapusStatus(boolean status) {
+        if (status == false) {
+            btnCari.setEnabled(true);
+            btnTambah.setEnabled(true);
+            btnClear.setEnabled(true);
+            btnEdit.setEnabled(false);
+            btnHapus.setEnabled(false);
+            btnBatal.setEnabled(false);
+            txtTanggal.setEditable(true);
+            cmbKdTabung.setEnabled(true);
+            txtNmTabung.setEditable(true);
+            txtHarga.setEditable(true);
+            txtJumlah.setEditable(true);
+            txtKeterangan.setEditable(true);
+
+        } else {
+            btnCari.setEnabled(false);
+            btnTambah.setEnabled(false);
+            btnClear.setEnabled(false);
+            btnEdit.setEnabled(true);
+            btnHapus.setEnabled(true);
+            btnBatal.setEnabled(true);
+            txtTanggal.setEditable(false);
+            cmbKdTabung.setEnabled(false);
+            txtNmTabung.setEditable(false);
+            txtHarga.setEditable(false);
+            txtJumlah.setEditable(false);
+            txtKeterangan.setEditable(false);
+
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBatal;
@@ -478,14 +562,11 @@ public class T03stokView extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnPrint;
     private javax.swing.JButton btnTambah;
-    private javax.swing.JComboBox cmbKdCust;
     private javax.swing.JComboBox cmbKdTabung;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -493,12 +574,11 @@ public class T03stokView extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable tblDistJual;
+    private javax.swing.JTable tblStok;
     private javax.swing.JTextField txtHarga;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtJumlah;
     private javax.swing.JTextArea txtKeterangan;
-    private javax.swing.JTextField txtNmCust;
     private javax.swing.JTextField txtNmTabung;
     private javax.swing.JTextField txtTanggal;
     // End of variables declaration//GEN-END:variables

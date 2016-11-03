@@ -21,20 +21,15 @@ public class M01pegaCtrl extends M01pega{
     public String cekLogin() {
         try {
             MySQLConn conn = new MySQLConn();
-            PreparedStatement stm = conn.connect("SELECT \n"
-                    + "  Username,\n"
-                    + "  Nama,\n"
-                    + "  Jabatan,\n"
-                    + "  PASSWORD \n"
-                    + "FROM\n"
-                    + "  m01pega \n"
-                    + "WHERE Username = ? \n"
-                    + "AND PASSWORD = ? ;");
+            PreparedStatement stm = conn.connect("SELECT nik, nama, username, PASSWORD \n" +
+                "FROM m01pega \n" +
+                "WHERE username = ?\n" +
+                "AND PASSWORD = ?;");
             stm.setString(1, getUsername());
             stm.setString(2, getPassword());
 
             ResultSet rs = stm.executeQuery();
-            String hasil = "";
+            String hasil = "Username atau Password salah";
             if (rs.next()) {
                 hasil = /*"sukses" atau*/ "boleh";
 //                return "boleh";
@@ -45,8 +40,9 @@ public class M01pegaCtrl extends M01pega{
 
         } catch (SQLException ex) {
             Logger.getLogger(M01pegaCtrl.class.getName()).log(Level.SEVERE, null, ex);
-
-            return "tidak";
+System.err.println(ex.getMessage());
+            return ex.getMessage();
+            
         }
 
     }

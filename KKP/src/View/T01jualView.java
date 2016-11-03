@@ -87,6 +87,7 @@ public class T01jualView extends javax.swing.JInternalFrame {
         btnHapus = new javax.swing.JButton();
         btnBatal = new javax.swing.JButton();
 
+        setClosable(true);
         setPreferredSize(new java.awt.Dimension(1132, 600));
 
         tblDistJual.setModel(new javax.swing.table.DefaultTableModel(
