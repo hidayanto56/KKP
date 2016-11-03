@@ -119,7 +119,7 @@
                               <Component id="txtNmTabung" alignment="1" max="32767" attributes="0"/>
                               <Component id="txtNmCust" alignment="0" max="32767" attributes="0"/>
                               <Component id="cmbKdTabung" alignment="0" max="32767" attributes="0"/>
-                              <Component id="cmbKdCust" alignment="0" max="32767" attributes="0"/>
+                              <Component id="cmbKdSupl" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -158,7 +158,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cmbKdCust" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cmbKdSupl" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -269,9 +269,9 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbKdTabungActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JComboBox" name="cmbKdCust">
+        <Component class="javax.swing.JComboBox" name="cmbKdSupl">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbKdCustActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbKdSuplActionPerformed"/>
           </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane2">

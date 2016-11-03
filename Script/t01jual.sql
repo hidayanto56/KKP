@@ -34,3 +34,7 @@ WHERE t01_id = ?;
 
 INSERT INTO kkp.t01jual (tanggal, kd_tabung, kdcust, jumlah, keterangan)
 VALUES (?,?,?,?,?);
+
+SELECT `kd_tabung`, jenis_tabung, harga, FROM m03tabu WHERE `kd_tabung` = ?;
+
+SELECT kdcust, nmcust FROM m05cust WHERE kdcust = ?;

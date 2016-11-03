@@ -37,7 +37,7 @@ public class M03tabuCtrl extends M03tabu{
                     + "  kd_tabung  ,\n"
                     + "  jenis_tabung,\n"
                     + "  harga,\n"
-                    + "  keterangan, \n"
+                    + "  keterangan \n"
                     + "FROM\n"
                     + "  kkp.m03tabu");
 

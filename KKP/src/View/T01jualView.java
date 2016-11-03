@@ -428,55 +428,55 @@ public class T01jualView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cmbKdCustActionPerformed
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
-                if(!txtTanggal.getText().equals("") || txtTanggal.getText() != null){
-                        T01jualCtrl cb = new T01jualCtrl();
-                        
-                        String tanggal = txtTanggal.getText();
-                        DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-                        Date date = null;
-                    try {
-                        date = format.parse(tanggal);
-                    } catch (ParseException ex) {
-                        Logger.getLogger(T01jualView.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-            
-                        cb.setTanggal(date);
-                        cb.setKd_tabung(cmbKdTabung.getSelectedItem().toString());
-                        cb.setKdcust(cmbKdCust.getSelectedItem().toString());
-                        if(txtJumlah.getText() != null){
-                            cb.setJumlah(Double.parseDouble(txtJumlah.getText()));
-                        }else{
-                            cb.setJumlah(new Double(0));
-                        }
-                        cb.setKeterangan(txtKeterangan.getText());
-                        cb.tambahTransaksiJual();
-            
-                        btnClearActionPerformed(evt);
-                        tblDistJual.setModel(cb.getDaftarTransaksiJual());
-            
-                    }else{
-                        JOptionPane.showInternalMessageDialog(this, "Tanggal tidak boleh kosong", "Error", 
-                                JOptionPane.INFORMATION_MESSAGE);
-                    }
+        if (!txtTanggal.getText().equals("") || txtTanggal.getText() != null) {
+            T01jualCtrl cb = new T01jualCtrl();
+
+            String tanggal = txtTanggal.getText();
+            DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+            Date date = null;
+            try {
+                date = format.parse(tanggal);
+            } catch (ParseException ex) {
+                Logger.getLogger(T01jualView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            cb.setTanggal(date);
+            cb.setKd_tabung(cmbKdTabung.getSelectedItem().toString());
+            cb.setKdcust(cmbKdCust.getSelectedItem().toString());
+            if (txtJumlah.getText() != null) {
+                cb.setJumlah(Double.parseDouble(txtJumlah.getText()));
+            } else {
+                cb.setJumlah(new Double(0));
+            }
+            cb.setKeterangan(txtKeterangan.getText());
+            cb.tambahTransaksiJual();
+
+            btnClearActionPerformed(evt);
+            tblDistJual.setModel(cb.getDaftarTransaksiJual());
+
+        } else {
+            JOptionPane.showInternalMessageDialog(this, "Tanggal tidak boleh kosong", "Error",
+                    JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_btnTambahActionPerformed
 
     private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
-                try {
-                        T01jualCtrl cbm = new T01jualCtrl();
-            
-                        String tanggal = txtTanggal.getText();
-                        DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-                        Date date = format.parse(tanggal);
-            
-                        cbm.setTanggal((java.sql.Date) date);
-                        cbm.setKd_tabung(cmbKdTabung.getSelectedItem().toString());
-                        cbm.setKdcust(cmbKdCust.getSelectedItem().toString());
+        try {
+            T01jualCtrl cbm = new T01jualCtrl();
+
+            String tanggal = txtTanggal.getText();
+            DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+            Date date = format.parse(tanggal);
+
+            cbm.setTanggal((java.sql.Date) date);
+            cbm.setKd_tabung(cmbKdTabung.getSelectedItem().toString());
+            cbm.setKdcust(cmbKdCust.getSelectedItem().toString());
                         //        cbm.setSatuan(txtSatuan.getText());
-                        //        cbm.setHarga(Integer.parseInt(txtHarga.getText()));
-                        tblDistJual.setModel(cbm.getCariTransaksiJual());
-                    } catch (ParseException ex) {
-                        Logger.getLogger(T01jualView.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+            //        cbm.setHarga(Integer.parseInt(txtHarga.getText()));
+            tblDistJual.setModel(cbm.getCariTransaksiJual());
+        } catch (ParseException ex) {
+            Logger.getLogger(T01jualView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnCariActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed

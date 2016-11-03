@@ -19,7 +19,7 @@ public class Main extends javax.swing.JFrame {
     T01jualView t01jualView;
     T02beliView t02beliView;
     T03stokView t03stokView;
-//    M03tabuView 
+    M03tabuView m03tabuVew; 
 
     /**
      * Creates new form Main
@@ -51,9 +51,9 @@ public class Main extends javax.swing.JFrame {
         dpMain.add(t03stokView);
         t03stokView.setVisible(false);
         
-//        m03view = new M03tabuView();
-//        dpMain.add(m03view);
-//        m03view.setVisible(false);
+        m03tabuVew = new M03tabuView();
+        dpMain.add(m03tabuVew);
+        m03tabuVew.setVisible(false);
         
         
     }
@@ -295,7 +295,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-//        m03view.setVisible(true);
+        m03tabuVew.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed

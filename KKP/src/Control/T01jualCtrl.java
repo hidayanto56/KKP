@@ -135,7 +135,7 @@ public class T01jualCtrl  extends T01jual{
             PreparedStatement stm = conn.connect("INSERT INTO kkp.t01jual (tanggal, kd_tabung, kdcust, jumlah, keterangan)\n" +
                 "VALUES (?,?,?,?,?);");
             
-            stm.setDate(1, (Date) getTanggal());
+            stm.setDate(1,  new Date(getTanggal().getTime()));
             stm.setString(2, getKd_tabung());
             stm.setString(3, getKdcust());
             stm.setDouble(4, getJumlah());

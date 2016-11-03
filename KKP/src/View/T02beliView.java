@@ -5,6 +5,16 @@
  */
 package View;
 
+import Control.T01jualCtrl;
+import Control.T02beliCtrl;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Thinkpad
@@ -16,6 +26,23 @@ public class T02beliView extends javax.swing.JInternalFrame {
      */
     public T02beliView() {
         initComponents();
+        txtID.setEditable(false);
+        txtTanggal.setText(new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
+//        txtTanggal.setBorder(;
+
+        T02beliCtrl t02 = new T02beliCtrl();
+        tblDistJual.setModel(t02.getDaftarTransaksiBeli());
+//        setEditStatus(false);
+        setVisible(true);
+
+        for (int i = 0; i < t02.getKodeTabung().getRowCount(); i++) {
+            cmbKdTabung.addItem(t02.getKodeTabung().getValueAt(i, 0));
+
+        }
+        for (int i = 0; i < t02.getKodeSuplier().getRowCount(); i++) {
+            cmbKdSupl.addItem(t02.getKodeSuplier().getValueAt(i, 0));
+        }
+
     }
 
     /**
@@ -44,7 +71,7 @@ public class T02beliView extends javax.swing.JInternalFrame {
         txtJumlah = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         cmbKdTabung = new javax.swing.JComboBox();
-        cmbKdCust = new javax.swing.JComboBox();
+        cmbKdSupl = new javax.swing.JComboBox();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtKeterangan = new javax.swing.JTextArea();
         jLabel9 = new javax.swing.JLabel();
@@ -124,9 +151,9 @@ public class T02beliView extends javax.swing.JInternalFrame {
             }
         });
 
-        cmbKdCust.addActionListener(new java.awt.event.ActionListener() {
+        cmbKdSupl.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbKdCustActionPerformed(evt);
+                cmbKdSuplActionPerformed(evt);
             }
         });
 
@@ -182,7 +209,7 @@ public class T02beliView extends javax.swing.JInternalFrame {
                             .addComponent(txtNmTabung, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtNmCust, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cmbKdTabung, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cmbKdCust, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(cmbKdSupl, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -211,7 +238,7 @@ public class T02beliView extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(cmbKdCust, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbKdSupl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -372,9 +399,9 @@ public class T02beliView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbKdTabungActionPerformed
 
-    private void cmbKdCustActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbKdCustActionPerformed
+    private void cmbKdSuplActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbKdSuplActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cmbKdCustActionPerformed
+    }//GEN-LAST:event_cmbKdSuplActionPerformed
 
     private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
         // TODO add your handling code here:
@@ -385,44 +412,55 @@ public class T02beliView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtIDKeyReleased
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
-        //        if(!txtTanggal.getText().equals("") || !txtNmCust.getText().equals("")){
-            //            T01 cb = new M05custCtrl();
-            //            cb.setKdcust(txtTanggal.getText());
-            //            cb.setNmcust(txtNmCust.getText());
-            //            cb.setAlamat(txtNmTabung.getText());
-            //            cb.setKota(txtHarga.getText());
-            //            cb.setTelp(txtTelp.getText());
-            //            cb.setKeterangan(txtNmCust.getText());
-            //            cb.tambahCustomer();
-            //
-            //            btnClearActionPerformed(evt);
-            //            tblCustomer.setModel(cb.getDaftarCustomer());
-            //
-            //        }else{
-            //            JOptionPane.showInternalMessageDialog(this, "Kode Customer dan Nama Customer tidak boleh kosong", "Error", JOptionPane.INFORMATION_MESSAGE);
-            //            //            JOptionPane.showInternalMessageDialog(null,
-                //                //                    "Kode Customer dan Nama Customer harus diisi", "ERROR",
-                //                //                    JOptionPane.INFORMATION_MESSAGE);
-            //        }
+        if (!txtTanggal.getText().equals("") || txtTanggal.getText() != null) {
+            T02beliCtrl cb = new T02beliCtrl();
+
+            String tanggal = txtTanggal.getText();
+            DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+            Date date = null;
+            try {
+                date = format.parse(tanggal);
+            } catch (ParseException ex) {
+                Logger.getLogger(T02beliView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            cb.setTanggal(date);
+            cb.setKd_tabung(cmbKdTabung.getSelectedItem().toString());
+            cb.setKdsupl(cmbKdSupl.getSelectedItem().toString());
+            if (txtJumlah.getText() != null) {
+                cb.setJumlah(Integer.parseInt(txtJumlah.getText()));
+            } else {
+                cb.setJumlah(0);
+            }
+            cb.setKeterangan(txtKeterangan.getText());
+            cb.tambahTransaksiBeli();
+
+            btnClearActionPerformed(evt);
+            tblDistJual.setModel(cb.getDaftarTransaksiBeli());
+
+        } else {
+            JOptionPane.showInternalMessageDialog(this, "Tanggal tidak boleh kosong", "Error",
+                    JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_btnTambahActionPerformed
 
     private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
-        //        try {
-            //            T01jualCtrl cbm = new T01jualCtrl();
-            //
-            //            String tanggal = txtTanggal.getText();
-            //            DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-            //            Date date = format.parse(tanggal);
-            //
-            //            cbm.setTanggal(date);
-            //            cbm.setM03_id(BigInteger.valueOf(cmbKdTabung.getSelectedIndex()));
-            //            cbm.setM05_id(BigInteger.valueOf(cmbKdCust.getSelectedIndex()));
-            //            //        cbm.setSatuan(txtSatuan.getText());
-            //            //        cbm.setHarga(Integer.parseInt(txtHarga.getText()));
-            //            tblDistJual.setModel(cbm.getCariTransaksiJual());
-            //        } catch (ParseException ex) {
-            //            Logger.getLogger(T01jualView.class.getName()).log(Level.SEVERE, null, ex);
-            //        }
+        try {
+            T02beliCtrl cbm = new T02beliCtrl();
+
+            String tanggal = txtTanggal.getText();
+            DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+            Date date = format.parse(tanggal);
+
+            cbm.setTanggal((java.sql.Date) date);
+            cbm.setKd_tabung(cmbKdTabung.getSelectedItem().toString());
+            cbm.setKdsupl(cmbKdSupl.getSelectedItem().toString());
+            //        cbm.setSatuan(txtSatuan.getText());
+            //        cbm.setHarga(Integer.parseInt(txtHarga.getText()));
+            tblDistJual.setModel(cbm.getCariTransaksiBeli());
+        } catch (ParseException ex) {
+            Logger.getLogger(T02beliView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnCariActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
@@ -480,7 +518,7 @@ public class T02beliView extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnPrint;
     private javax.swing.JButton btnTambah;
-    private javax.swing.JComboBox cmbKdCust;
+    private javax.swing.JComboBox cmbKdSupl;
     private javax.swing.JComboBox cmbKdTabung;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
