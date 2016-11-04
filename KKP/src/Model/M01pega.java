@@ -5,7 +5,6 @@
  */
 package Model;
 
-import java.math.BigInteger;
 import java.util.Date;
 
 /**
@@ -26,7 +25,7 @@ public class M01pega {
     Date tgllahir;
     String email    ;
     Date tglmasuk;
-    Long m02_id;
+    String kdjab;
     Long version;
     String created_by;
     Date created_on;
@@ -137,12 +136,12 @@ public class M01pega {
         this.tglmasuk = tglmasuk;
     }
 
-    public Long getM02_id() {
-        return m02_id;
+    public String getKdjab() {
+        return kdjab;
     }
 
-    public void setM02_id(Long m02_id) {
-        this.m02_id = m02_id;
+    public void setKdjab(String kdjab) {
+        this.kdjab = kdjab;
     }
 
     public Long getVersion() {
@@ -185,7 +184,7 @@ public class M01pega {
         this.updated_on = updated_on;
     }
 
-
+    
 }
 
 

@@ -101,6 +101,11 @@ public class T01jualView extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblDistJual.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDistJualMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblDistJual);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -558,6 +563,21 @@ public class T01jualView extends javax.swing.JInternalFrame {
         
         txtNmCust.setText(t01.getCustomer().getValueAt(0, 1).toString());
     }//GEN-LAST:event_cmbKdCustItemStateChanged
+
+    private void tblDistJualMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDistJualMouseClicked
+        int tableData = tblDistJual.getSelectedRow();
+        txtID.setText(tblDistJual.getValueAt(tableData, 0).toString());
+        txtTanggal.setText(tblDistJual.getValueAt(tableData, 1).toString());
+        cmbKdTabung.setSelectedItem(tblDistJual.getValueAt(tableData, 2).toString());
+        txtNmTabung.setText(tblDistJual.getValueAt(tableData, 3).toString());
+        txtHarga.setText(tblDistJual.getValueAt(tableData, 4).toString());
+        cmbKdCust.setSelectedItem(tblDistJual.getValueAt(tableData, 5).toString());
+        txtNmCust.setText(tblDistJual.getValueAt(tableData, 6).toString());
+        txtJumlah.setText(tblDistJual.getValueAt(tableData, 7).toString());
+        txtKeterangan.setText(tblDistJual.getValueAt(tableData, 8).toString());
+       
+                setEditStatus(false);
+    }//GEN-LAST:event_tblDistJualMouseClicked
 
     private void setEditStatus(boolean status) {
         if (status == false) {

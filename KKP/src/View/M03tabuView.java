@@ -373,7 +373,7 @@ public class M03tabuView extends javax.swing.JInternalFrame {
         txtHarga.setText(tblTabung.getValueAt(tableData, 2).toString());
         txtKeterangan.setText(tblTabung.getValueAt(tableData, 3).toString());
 
-        //        setEditStatus(false);
+                setEditStatus(false);
     }//GEN-LAST:event_tblTabungMouseClicked
 
     private void txtKd_TabungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtKd_TabungActionPerformed

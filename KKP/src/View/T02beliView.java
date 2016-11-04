@@ -98,6 +98,11 @@ public class T02beliView extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblDistBeli.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDistBeliMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblDistBeli);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -515,6 +520,21 @@ public class T02beliView extends javax.swing.JInternalFrame {
         T02beliCtrl cb = new T02beliCtrl();
         tblDistBeli.setModel(cb.getDaftarTransaksiBeli());
     }//GEN-LAST:event_btnBatalActionPerformed
+
+    private void tblDistBeliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDistBeliMouseClicked
+        int tableData = tblDistBeli.getSelectedRow();
+        txtID.setText(tblDistBeli.getValueAt(tableData, 0).toString());
+        txtTanggal.setText(tblDistBeli.getValueAt(tableData, 1).toString());
+        cmbKdTabung.setSelectedItem(tblDistBeli.getValueAt(tableData, 2).toString());
+        txtNmTabung.setText(tblDistBeli.getValueAt(tableData, 3).toString());
+        txtHarga.setText(tblDistBeli.getValueAt(tableData, 4).toString());
+        cmbKdSupl.setSelectedItem(tblDistBeli.getValueAt(tableData, 5).toString());
+        txtNmSupl.setText(tblDistBeli.getValueAt(tableData, 6).toString());
+        txtJumlah.setText(tblDistBeli.getValueAt(tableData, 7).toString());
+        txtKeterangan.setText(tblDistBeli.getValueAt(tableData, 8).toString());
+       
+                setEditStatus(false);
+    }//GEN-LAST:event_tblDistBeliMouseClicked
 
     private void setEditStatus(boolean status) {
         if (status == false) {

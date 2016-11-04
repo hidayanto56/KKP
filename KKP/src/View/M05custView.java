@@ -406,7 +406,7 @@ public class M05custView extends javax.swing.JInternalFrame {
         txtTelp.setText(tblCustomer.getValueAt(tableData, 4).toString());
         txtKeterangan.setText(tblCustomer.getValueAt(tableData, 5).toString());
         
-//        setEditStatus(false);
+        setEditStatus(false);
     }//GEN-LAST:event_tblCustomerMouseClicked
 
     private void txtKdCustKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtKdCustKeyReleased
