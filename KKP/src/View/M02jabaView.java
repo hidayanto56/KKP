@@ -5,24 +5,17 @@
  */
 package View;
 
-import Control.M05custCtrl;
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author Thinkpad
  */
-public class M05custView extends javax.swing.JInternalFrame {
+public class M02jabaView extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form M05custView
+     * Creates new form M02jabaView
      */
-    public M05custView() {
+    public M02jabaView() {
         initComponents();
-        M05custCtrl m05 = new M05custCtrl();
-        tblCustomer.setModel(m05.getDaftarCustomer());
-        setEditStatus(false);
-        setVisible(true);
     }
 
     /**
@@ -59,9 +52,7 @@ public class M05custView extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCustomer = new javax.swing.JTable();
 
-        setClosable(true);
-        setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
-        setTitle("Customer");
+        setPreferredSize(new java.awt.Dimension(1132, 600));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel2.setPreferredSize(new java.awt.Dimension(270, 232));
@@ -310,7 +301,7 @@ public class M05custView extends javax.swing.JInternalFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -320,6 +311,10 @@ public class M05custView extends javax.swing.JInternalFrame {
     private void txtKdCustActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtKdCustActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtKdCustActionPerformed
+
+    private void txtKdCustKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtKdCustKeyReleased
+        txtKdCust.setText(txtKdCust.getText().toUpperCase());
+    }//GEN-LAST:event_txtKdCustKeyReleased
 
     private void txtAlamatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAlamatActionPerformed
         // TODO add your handling code here:
@@ -338,42 +333,25 @@ public class M05custView extends javax.swing.JInternalFrame {
 
             btnClearActionPerformed(evt);
             tblCustomer.setModel(cb.getDaftarCustomer());
-        
+
         }else{
             JOptionPane.showInternalMessageDialog(this, "Kode Customer dan Nama Customer tidak boleh kosong", "Error", JOptionPane.INFORMATION_MESSAGE);
-//            JOptionPane.showInternalMessageDialog(null,
-//                    "Kode Customer dan Nama Customer harus diisi", "ERROR",
-//                    JOptionPane.INFORMATION_MESSAGE);
+            //            JOptionPane.showInternalMessageDialog(null,
+                //                    "Kode Customer dan Nama Customer harus diisi", "ERROR",
+                //                    JOptionPane.INFORMATION_MESSAGE);
         }
-        
+
     }//GEN-LAST:event_btnTambahActionPerformed
 
     private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
         M05custCtrl cbm = new M05custCtrl();
         cbm.setKdcust(txtKdCust.getText());
         cbm.setNmcust(txtNmCust.getText());
-//        cbm.setAlamat(txtMerek.getText());
-//        cbm.setSatuan(txtSatuan.getText());
-//        cbm.setHarga(Integer.parseInt(txtHarga.getText()));
+        //        cbm.setAlamat(txtMerek.getText());
+        //        cbm.setSatuan(txtSatuan.getText());
+        //        cbm.setHarga(Integer.parseInt(txtHarga.getText()));
         tblCustomer.setModel(cbm.getCariCustomer());
     }//GEN-LAST:event_btnCariActionPerformed
-
-    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
-        clearText();
-    }//GEN-LAST:event_btnClearActionPerformed
-
-    private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
-        M05custCtrl cb = new M05custCtrl();
-        cb.setKdcust(txtKdCust.getText());
-        cb.setNmcust(txtNmCust.getText());
-        cb.hapusCustomer();
-
-        setHapusStatus(false);
-        btnClearActionPerformed(evt);
-
-        M05custCtrl cb2 = new M05custCtrl();
-        tblCustomer.setModel(cb2.getDaftarCustomer());
-    }//GEN-LAST:event_btnHapusActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         M05custCtrl cb = new M05custCtrl();
@@ -392,10 +370,34 @@ public class M05custView extends javax.swing.JInternalFrame {
         tblCustomer.setModel(cb2.getDaftarCustomer());
     }//GEN-LAST:event_btnEditActionPerformed
 
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        clearText();
+    }//GEN-LAST:event_btnClearActionPerformed
+
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
         M05custCtrl cb = new M05custCtrl();
         cb.printCustomer();
     }//GEN-LAST:event_btnPrintActionPerformed
+
+    private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
+        M05custCtrl cb = new M05custCtrl();
+        cb.setKdcust(txtKdCust.getText());
+        cb.setNmcust(txtNmCust.getText());
+        cb.hapusCustomer();
+
+        setHapusStatus(false);
+        btnClearActionPerformed(evt);
+
+        M05custCtrl cb2 = new M05custCtrl();
+        tblCustomer.setModel(cb2.getDaftarCustomer());
+    }//GEN-LAST:event_btnHapusActionPerformed
+
+    private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
+        setEditStatus(false);
+        btnClearActionPerformed(evt);
+        M05custCtrl cb = new M05custCtrl();
+        tblCustomer.setModel(cb.getDaftarCustomer());
+    }//GEN-LAST:event_btnBatalActionPerformed
 
     private void tblCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCustomerMouseClicked
         int tableData = tblCustomer.getSelectedRow();
@@ -405,73 +407,10 @@ public class M05custView extends javax.swing.JInternalFrame {
         txtKota.setText(tblCustomer.getValueAt(tableData, 3).toString());
         txtTelp.setText(tblCustomer.getValueAt(tableData, 4).toString());
         txtKeterangan.setText(tblCustomer.getValueAt(tableData, 5).toString());
-        
-//        setEditStatus(false);
+
+        //        setEditStatus(false);
     }//GEN-LAST:event_tblCustomerMouseClicked
 
-    private void txtKdCustKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtKdCustKeyReleased
-        txtKdCust.setText(txtKdCust.getText().toUpperCase());
-    }//GEN-LAST:event_txtKdCustKeyReleased
-
-    private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
-        setEditStatus(false);
-        btnClearActionPerformed(evt);
-        M05custCtrl cb = new M05custCtrl();
-        tblCustomer.setModel(cb.getDaftarCustomer());
-    }//GEN-LAST:event_btnBatalActionPerformed
-
-    private void setEditStatus(boolean status) {
-        if (status == false) {
-            btnCari.setEnabled(true);
-            btnTambah.setEnabled(true);
-            btnHapus.setEnabled(true);
-            btnEdit.setEnabled(false);
-            btnBatal.setEnabled(true);
-            txtKdCust.setEnabled(true);
-            txtNmCust.setEnabled(true);
-        } else {
-            btnCari.setEnabled(false);
-            btnTambah.setEnabled(false);
-            btnHapus.setEnabled(true);
-            btnEdit.setEnabled(true);
-            btnBatal.setEnabled(true);
-            txtKdCust.setEditable(false);
-            txtNmCust.setEditable(false);
-
-        }
-    }
-    
-    private void clearText() {
-        txtKdCust.setText("");
-        txtNmCust.setText("");
-        txtAlamat.setText("");
-        txtKota.setText("");
-        txtTelp.setText("");
-        txtKeterangan.setText("");
-    }
-    
-    private void setHapusStatus(boolean status) {
-        if (status == false) {
-            btnCari.setEnabled(true);
-            btnTambah.setEnabled(true);
-            btnClear.setEnabled(true);
-            btnEdit.setEnabled(false);
-            btnHapus.setEnabled(false);
-            btnBatal.setEnabled(false);
-            txtKdCust.setEditable(true);
-            txtNmCust.setEditable(true);
-        } else {
-            btnCari.setEnabled(false);
-            btnTambah.setEnabled(false);
-            btnClear.setEnabled(false);
-            btnEdit.setEnabled(true);
-            btnHapus.setEnabled(true);
-            btnBatal.setEnabled(true);
-            txtKdCust.setEditable(false);
-            txtNmCust.setEditable(false);
-
-        }
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBatal;
