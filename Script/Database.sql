@@ -137,7 +137,7 @@ CREATE TABLE `m05cust` (
   `updated_on` datetime DEFAULT NULL,
   PRIMARY KEY (`m05_id`,`kdcust`),
   UNIQUE KEY `kdcust` (`kdcust`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `m05cust` */
 
