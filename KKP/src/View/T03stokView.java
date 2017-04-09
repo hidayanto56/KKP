@@ -6,7 +6,7 @@
 package View;
 
 import Control.T01jualCtrl;
-import Control.T02beliCtrl;
+import Control.T03stokCtrl;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -19,29 +19,29 @@ import javax.swing.JOptionPane;
  *
  * @author Thinkpad
  */
-public class T02beliView extends javax.swing.JInternalFrame {
+public class T03stokView extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form T02beliView
+     * Creates new form T03stokView
      */
-    public T02beliView() {
+    public T03stokView() {
         initComponents();
         txtID.setEditable(false);
         txtTanggal.setText(new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
 //        txtTanggal.setBorder(;
 
-        T02beliCtrl t02 = new T02beliCtrl();
-        tblDistBeli.setModel(t02.getDaftarTransaksiBeli());
+        T03stokCtrl t01 = new T03stokCtrl();
+        tblStok.setModel(t01.getDaftarStok());
 //        setEditStatus(false);
         setVisible(true);
 
-        for (int i = 0; i < t02.getKodeTabung().getRowCount(); i++) {
-            cmbKdTabung.addItem(t02.getKodeTabung().getValueAt(i, 0));
+        for (int i = 0; i < t01.getKodeTabung().getRowCount(); i++) {
+            cmbKdTabung.addItem(t01.getKodeTabung().getValueAt(i, 0));
 
         }
-        for (int i = 0; i < t02.getKodeSuplier().getRowCount(); i++) {
-            cmbKdSupl.addItem(t02.getKodeSuplier().getValueAt(i, 0));
-        }
+//        for (int i=0; i < t01.getKodeCustomer().getRowCount(); i++){
+//            cmbKdCust.addItem(t01.getKodeCustomer().getValueAt(i, 0));
+//        }
 
     }
 
@@ -55,23 +55,19 @@ public class T02beliView extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblDistBeli = new javax.swing.JTable();
+        tblStok = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         txtTanggal = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         txtHarga = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtNmSupl = new javax.swing.JTextField();
         txtNmTabung = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         txtJumlah = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         cmbKdTabung = new javax.swing.JComboBox();
-        cmbKdSupl = new javax.swing.JComboBox();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtKeterangan = new javax.swing.JTextArea();
         jLabel9 = new javax.swing.JLabel();
@@ -87,7 +83,7 @@ public class T02beliView extends javax.swing.JInternalFrame {
 
         setClosable(true);
 
-        tblDistBeli.setModel(new javax.swing.table.DefaultTableModel(
+        tblStok.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -98,12 +94,12 @@ public class T02beliView extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tblDistBeli.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblStok.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblDistBeliMouseClicked(evt);
+                tblStokMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tblDistBeli);
+        jScrollPane1.setViewportView(tblStok);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel2.setPreferredSize(new java.awt.Dimension(270, 232));
@@ -121,19 +117,13 @@ public class T02beliView extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel6.setText("Nama Supplier");
-
         jLabel2.setText("Kode Tabung");
 
         jLabel1.setText("Tanggal");
 
         txtHarga.setPreferredSize(new java.awt.Dimension(140, 20));
 
-        jLabel5.setText("Kode Supplier");
-
         jLabel3.setText("Nama Tabung");
-
-        txtNmSupl.setPreferredSize(new java.awt.Dimension(140, 20));
 
         txtNmTabung.setPreferredSize(new java.awt.Dimension(140, 20));
         txtNmTabung.addActionListener(new java.awt.event.ActionListener() {
@@ -153,12 +143,6 @@ public class T02beliView extends javax.swing.JInternalFrame {
         cmbKdTabung.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbKdTabungActionPerformed(evt);
-            }
-        });
-
-        cmbKdSupl.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbKdSuplActionPerformed(evt);
             }
         });
 
@@ -191,26 +175,26 @@ public class T02beliView extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel8))
-                .addGap(10, 10, 10)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
-                    .addComponent(txtID, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                    .addComponent(txtJumlah, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtTanggal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtHarga, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtNmTabung, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtNmSupl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cmbKdTabung, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cmbKdSupl, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(30, 30, 30)
+                        .addComponent(jScrollPane2))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel9))
+                        .addGap(20, 20, 20)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtJumlah, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtTanggal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtHarga, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtNmTabung, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cmbKdTabung, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -236,14 +220,6 @@ public class T02beliView extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtHarga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(cmbKdSupl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtNmSupl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -371,14 +347,13 @@ public class T02beliView extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 558, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
-                        .addGap(15, 15, 15))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         pack();
@@ -389,7 +364,7 @@ public class T02beliView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtTanggalActionPerformed
 
     private void txtTanggalKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTanggalKeyReleased
-        txtTanggal.setText(txtTanggal.getText().toUpperCase());
+//        txtTanggal.setText(txtTanggal.getText().toUpperCase());
     }//GEN-LAST:event_txtTanggalKeyReleased
 
     private void txtNmTabungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNmTabungActionPerformed
@@ -399,10 +374,6 @@ public class T02beliView extends javax.swing.JInternalFrame {
     private void cmbKdTabungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbKdTabungActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbKdTabungActionPerformed
-
-    private void cmbKdSuplActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbKdSuplActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbKdSuplActionPerformed
 
     private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
         // TODO add your handling code here:
@@ -414,69 +385,65 @@ public class T02beliView extends javax.swing.JInternalFrame {
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
         if (!txtTanggal.getText().equals("") || txtTanggal.getText() != null) {
-            T02beliCtrl cb = new T02beliCtrl();
-
+            T03stokCtrl cb = new T03stokCtrl();
             String tanggal = txtTanggal.getText();
             DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
             Date date = null;
             try {
                 date = format.parse(tanggal);
             } catch (ParseException ex) {
-                Logger.getLogger(T02beliView.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(T03stokView.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             cb.setTanggal(date);
             cb.setKd_tabung(cmbKdTabung.getSelectedItem().toString());
-            cb.setKdsupl(cmbKdSupl.getSelectedItem().toString());
             if (txtJumlah.getText() != null) {
                 cb.setJumlah(Integer.parseInt(txtJumlah.getText()));
             } else {
                 cb.setJumlah(0);
             }
             cb.setKeterangan(txtKeterangan.getText());
-            cb.tambahTransaksiBeli();
+            cb.tambahStok();
 
             btnClearActionPerformed(evt);
-            tblDistBeli.setModel(cb.getDaftarTransaksiBeli());
+            tblStok.setModel(cb.getDaftarStok());
 
         } else {
-            JOptionPane.showInternalMessageDialog(this, "Tanggal tidak boleh kosong", "Error",
-                    JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showInternalMessageDialog(this, "Tanggal tidak boleh kosong", "Error", JOptionPane.INFORMATION_MESSAGE);
+            //            JOptionPane.showInternalMessageDialog(null,
+            //                    "Kode Customer dan Nama Customer harus diisi", "ERROR",
+            //                    JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnTambahActionPerformed
 
     private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
         try {
-            T02beliCtrl cbm = new T02beliCtrl();
+            T03stokCtrl cbm = new T03stokCtrl();
 
             String tanggal = txtTanggal.getText();
             DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
             Date date = format.parse(tanggal);
 
-            cbm.setTanggal((java.sql.Date) date);
+            cbm.setTanggal(date);
             cbm.setKd_tabung(cmbKdTabung.getSelectedItem().toString());
-            cbm.setKdsupl(cmbKdSupl.getSelectedItem().toString());
-            //        cbm.setSatuan(txtSatuan.getText());
-            //        cbm.setHarga(Integer.parseInt(txtHarga.getText()));
-            tblDistBeli.setModel(cbm.getCariTransaksiBeli());
+            tblStok.setModel(cbm.getCariStok());
         } catch (ParseException ex) {
-            Logger.getLogger(T02beliView.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(T03stokView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnCariActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-        T02beliCtrl cb = new T02beliCtrl();
+        T03stokCtrl cb = new T03stokCtrl();
         String tanggal = txtTanggal.getText();
         DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
         Date date = null;
         try {
             date = format.parse(tanggal);
         } catch (ParseException ex) {
-            Logger.getLogger(T02beliView.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(T03stokView.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         cb.setTanggal((java.sql.Date) date);
-//        cb.setTanggal(txtTanggal.getText());
         cb.setKd_tabung(cmbKdTabung.getSelectedItem().toString());
         if (txtJumlah.getText() != null) {
             cb.setJumlah(Integer.parseInt(txtJumlah.getText()));
@@ -484,13 +451,13 @@ public class T02beliView extends javax.swing.JInternalFrame {
             cb.setJumlah(0);
         }
         cb.setKeterangan(txtKeterangan.getText());
-        cb.editPembelian();
+        cb.editStok();
 
         setEditStatus(false);
         btnClearActionPerformed(evt);
 
-        T02beliCtrl cb2 = new T02beliCtrl();
-        tblDistBeli.setModel(cb2.getDaftarTransaksiBeli());
+        T03stokCtrl cb2 = new T03stokCtrl();
+        tblStok.setModel(cb2.getDaftarStok());
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
@@ -498,43 +465,42 @@ public class T02beliView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
-        T02beliCtrl cb = new T02beliCtrl();
-        cb.printPembelian();
+        T03stokCtrl cb = new T03stokCtrl();
+        cb.printStok();
     }//GEN-LAST:event_btnPrintActionPerformed
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
-        T02beliCtrl cb = new T02beliCtrl();
-        cb.setT02_id(Long.parseLong(txtID.getText()));
-        cb.hapusPembelian();
+        T03stokCtrl cb = new T03stokCtrl();
+        cb.setT03_id(Long.parseLong(txtID.getText()));
+//        cb.setNmcust(txtNmCust.getText());
+        cb.hapusStok();
 
         setHapusStatus(false);
         btnClearActionPerformed(evt);
 
-        T02beliCtrl cb2 = new T02beliCtrl();
-        tblDistBeli.setModel(cb2.getDaftarTransaksiBeli());
+        T03stokCtrl cb2 = new T03stokCtrl();
+        tblStok.setModel(cb2.getDaftarStok());
     }//GEN-LAST:event_btnHapusActionPerformed
 
     private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
         setEditStatus(false);
         btnClearActionPerformed(evt);
-        T02beliCtrl cb = new T02beliCtrl();
-        tblDistBeli.setModel(cb.getDaftarTransaksiBeli());
+        T03stokCtrl cb = new T03stokCtrl();
+        tblStok.setModel(cb.getDaftarStok());
     }//GEN-LAST:event_btnBatalActionPerformed
 
-    private void tblDistBeliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDistBeliMouseClicked
-        int tableData = tblDistBeli.getSelectedRow();
-        txtID.setText(tblDistBeli.getValueAt(tableData, 0).toString());
-        txtTanggal.setText(tblDistBeli.getValueAt(tableData, 1).toString());
-        cmbKdTabung.setSelectedItem(tblDistBeli.getValueAt(tableData, 2).toString());
-        txtNmTabung.setText(tblDistBeli.getValueAt(tableData, 3).toString());
-        txtHarga.setText(tblDistBeli.getValueAt(tableData, 4).toString());
-        cmbKdSupl.setSelectedItem(tblDistBeli.getValueAt(tableData, 5).toString());
-        txtNmSupl.setText(tblDistBeli.getValueAt(tableData, 6).toString());
-        txtJumlah.setText(tblDistBeli.getValueAt(tableData, 7).toString());
-        txtKeterangan.setText(tblDistBeli.getValueAt(tableData, 8).toString());
+    private void tblStokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblStokMouseClicked
+        int tableData = tblStok.getSelectedRow();
+        txtID.setText(tblStok.getValueAt(tableData, 0).toString());
+        txtTanggal.setText(tblStok.getValueAt(tableData, 1).toString());
+        cmbKdTabung.setSelectedItem(tblStok.getValueAt(tableData, 2).toString());
+        txtNmTabung.setText(tblStok.getValueAt(tableData, 3).toString());
+        txtHarga.setText(tblStok.getValueAt(tableData, 4).toString());
+        txtJumlah.setText(tblStok.getValueAt(tableData, 5).toString());
+        txtKeterangan.setText(tblStok.getValueAt(tableData, 6).toString());
        
                 setEditStatus(false);
-    }//GEN-LAST:event_tblDistBeliMouseClicked
+    }//GEN-LAST:event_tblStokMouseClicked
 
     private void setEditStatus(boolean status) {
         if (status == false) {
@@ -547,8 +513,6 @@ public class T02beliView extends javax.swing.JInternalFrame {
             cmbKdTabung.setEnabled(false);
             txtNmTabung.setEditable(false);
             txtHarga.setEditable(false);
-            cmbKdSupl.setEnabled(false);
-            txtNmSupl.setEditable(false);
             txtJumlah.setEditable(false);
             txtKeterangan.setEditable(false);
 
@@ -562,8 +526,6 @@ public class T02beliView extends javax.swing.JInternalFrame {
             cmbKdTabung.setEnabled(true);
             txtNmTabung.setEditable(true);
             txtHarga.setEditable(true);
-            cmbKdSupl.setEnabled(true);
-            txtNmSupl.setEditable(true);
             txtJumlah.setEditable(false);
             txtKeterangan.setEditable(false);
 
@@ -575,7 +537,6 @@ public class T02beliView extends javax.swing.JInternalFrame {
         txtTanggal.setText(new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
         txtNmTabung.setText("");
         txtHarga.setText("");
-        txtNmSupl.setText("");
         txtJumlah.setText("");
         txtKeterangan.setText("");
     }
@@ -592,8 +553,6 @@ public class T02beliView extends javax.swing.JInternalFrame {
             cmbKdTabung.setEnabled(true);
             txtNmTabung.setEditable(true);
             txtHarga.setEditable(true);
-            cmbKdSupl.setEnabled(true);
-            txtNmSupl.setEditable(true);
             txtJumlah.setEditable(true);
             txtKeterangan.setEditable(true);
 
@@ -608,8 +567,6 @@ public class T02beliView extends javax.swing.JInternalFrame {
             cmbKdTabung.setEnabled(false);
             txtNmTabung.setEditable(false);
             txtHarga.setEditable(false);
-            cmbKdSupl.setEnabled(false);
-            txtNmSupl.setEditable(false);
             txtJumlah.setEditable(false);
             txtKeterangan.setEditable(false);
 
@@ -624,14 +581,11 @@ public class T02beliView extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnPrint;
     private javax.swing.JButton btnTambah;
-    private javax.swing.JComboBox cmbKdSupl;
     private javax.swing.JComboBox cmbKdTabung;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -639,12 +593,11 @@ public class T02beliView extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable tblDistBeli;
+    private javax.swing.JTable tblStok;
     private javax.swing.JTextField txtHarga;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtJumlah;
     private javax.swing.JTextArea txtKeterangan;
-    private javax.swing.JTextField txtNmSupl;
     private javax.swing.JTextField txtNmTabung;
     private javax.swing.JTextField txtTanggal;
     // End of variables declaration//GEN-END:variables

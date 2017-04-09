@@ -5,7 +5,6 @@
  */
 package Model;
 
-import java.math.BigInteger;
 import java.util.Date;
 
 /**
@@ -13,7 +12,7 @@ import java.util.Date;
  * @author Thinkpad
  */
 public class M01pega {
-    BigInteger m01_id;
+    Long m01_id;
     String nik;
     String nama;
     String username;
@@ -26,38 +25,18 @@ public class M01pega {
     Date tgllahir;
     String email    ;
     Date tglmasuk;
-    BigInteger m02_id;
-    BigInteger version;
+    String kdjab;
+    Long version;
     String created_by;
     Date created_on;
     String updated_by;
     Date updated_on;
 
-//    public M01pega(BigInteger m01_id, String nik, String nama, String gender, String status, String telepon, String alamat, String agama, Date tgllahir, String email, Date tglmasuk, BigInteger m02_id, BigInteger version, String created_by, Date created_on, String updated_by, Date updated_on) {
-//        this.m01_id = m01_id;
-//        this.nik = nik;
-//        this.nama = nama;
-//        this.gender = gender;
-//        this.status = status;
-//        this.telepon = telepon;
-//        this.alamat = alamat;
-//        this.agama = agama;
-//        this.tgllahir = tgllahir;
-//        this.email = email;
-//        this.tglmasuk = tglmasuk;
-//        this.m02_id = m02_id;
-//        this.version = version;
-//        this.created_by = created_by;
-//        this.created_on = created_on;
-//        this.updated_by = updated_by;
-//        this.updated_on = updated_on;
-//    }
-
-    public BigInteger getM01_id() {
+    public Long getM01_id() {
         return m01_id;
     }
 
-    public void setM01_id(BigInteger m01_id) {
+    public void setM01_id(Long m01_id) {
         this.m01_id = m01_id;
     }
 
@@ -157,19 +136,19 @@ public class M01pega {
         this.tglmasuk = tglmasuk;
     }
 
-    public BigInteger getM02_id() {
-        return m02_id;
+    public String getKdjab() {
+        return kdjab;
     }
 
-    public void setM02_id(BigInteger m02_id) {
-        this.m02_id = m02_id;
+    public void setKdjab(String kdjab) {
+        this.kdjab = kdjab;
     }
 
-    public BigInteger getVersion() {
+    public Long getVersion() {
         return version;
     }
 
-    public void setVersion(BigInteger version) {
+    public void setVersion(Long version) {
         this.version = version;
     }
 
@@ -205,6 +184,7 @@ public class M01pega {
         this.updated_on = updated_on;
     }
 
+    
 }
 
 

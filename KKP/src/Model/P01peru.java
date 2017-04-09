@@ -22,28 +22,11 @@ public class P01peru {
     String email;
     String npwp;
     String siup;
-    BigInteger version;
+    Long version;
     String created_by;
     Date created_on;
     String updated_by;
     Date updated_on;
-
-//    public P01peru(String kdperu, String nmperu, String alamat, String kota, String telp1, String telp2, String email, String npwp, String kdsiup, BigInteger version, String created_by, Date created_on, String updated_by, Date updated_on) {
-//        this.kdperu = kdperu;
-//        this.nmperu = nmperu;
-//        this.alamat = alamat;
-//        this.kota = kota;
-//        this.telp1 = telp1;
-//        this.telp2 = telp2;
-//        this.email = email;
-//        this.npwp = npwp;
-//        this.kdsiup = kdsiup;
-//        this.version = version;
-//        this.created_by = created_by;
-//        this.created_on = created_on;
-//        this.updated_by = updated_by;
-//        this.updated_on = updated_on;
-//    }
 
     public String getKdperu() {
         return kdperu;
@@ -117,11 +100,11 @@ public class P01peru {
         this.siup = siup;
     }
 
-    public BigInteger getVersion() {
+    public Long getVersion() {
         return version;
     }
 
-    public void setVersion(BigInteger version) {
+    public void setVersion(Long version) {
         this.version = version;
     }
 

@@ -5,20 +5,17 @@
  */
 package Model;
 
-import java.math.BigInteger;
 import java.util.Date;
 
 /**
  *
  * @author Thinkpad
  */
-public class M05cust {
-    Long m05_id;
-    String kdcust;
-    String nmcust;
-    String alamat;
-    String kota;  
-    String telp;
+public class T03stok {
+    Long t03_id;
+    Date tanggal;
+    String kd_tabung;
+    Integer jumlah;
     String keterangan;
     Long version;
     String created_by;
@@ -26,52 +23,36 @@ public class M05cust {
     String updated_by;
     Date updated_on;
 
-    public Long getM05_id() {
-        return m05_id;
+    public Long getT03_id() {
+        return t03_id;
     }
 
-    public void setM05_id(Long m05_id) {
-        this.m05_id = m05_id;
+    public void setT03_id(Long t03_id) {
+        this.t03_id = t03_id;
     }
 
-    public String getKdcust() {
-        return kdcust;
+    public Date getTanggal() {
+        return tanggal;
     }
 
-    public void setKdcust(String kdcust) {
-        this.kdcust = kdcust;
+    public void setTanggal(Date tanggal) {
+        this.tanggal = tanggal;
     }
 
-    public String getNmcust() {
-        return nmcust;
+    public String getKd_tabung() {
+        return kd_tabung;
     }
 
-    public void setNmcust(String nmcust) {
-        this.nmcust = nmcust;
+    public void setKd_tabung(String kd_tabung) {
+        this.kd_tabung = kd_tabung;
     }
 
-    public String getAlamat() {
-        return alamat;
+    public Integer getJumlah() {
+        return jumlah;
     }
 
-    public void setAlamat(String alamat) {
-        this.alamat = alamat;
-    }
-
-    public String getKota() {
-        return kota;
-    }
-
-    public void setKota(String kota) {
-        this.kota = kota;
-    }
-
-    public String getTelp() {
-        return telp;
-    }
-
-    public void setTelp(String telp) {
-        this.telp = telp;
+    public void setJumlah(Integer jumlah) {
+        this.jumlah = jumlah;
     }
 
     public String getKeterangan() {
@@ -121,6 +102,7 @@ public class M05cust {
     public void setUpdated_on(Date updated_on) {
         this.updated_on = updated_on;
     }
-
- 
+    
+    
+    
 }

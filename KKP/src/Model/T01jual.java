@@ -13,25 +13,24 @@ import java.util.Date;
  * @author Thinkpad
  */
 public class T01jual {
-    BigInteger t01_id;
+    Long t01_id;
     Date tanggal;
     Integer tipe;
-    BigInteger m03_id;
-    BigInteger m04_id;
-    BigInteger m05_id;
     Double jumlah;
+    String kd_tabung;
+    String kdcust;
     String keterangan;
-    BigInteger version;
+    Long version;
     String created_by;
     Date created_on;
     String updated_by;
     Date updated_on;
 
-    public BigInteger getT01_id() {
+    public Long getT01_id() {
         return t01_id;
     }
 
-    public void setT01_id(BigInteger t01_id) {
+    public void setT01_id(Long t01_id) {
         this.t01_id = t01_id;
     }
 
@@ -51,36 +50,28 @@ public class T01jual {
         this.tipe = tipe;
     }
 
-    public BigInteger getM03_id() {
-        return m03_id;
-    }
-
-    public void setM03_id(BigInteger m03_id) {
-        this.m03_id = m03_id;
-    }
-
-    public BigInteger getM04_id() {
-        return m04_id;
-    }
-
-    public void setM04_id(BigInteger m04_id) {
-        this.m04_id = m04_id;
-    }
-
-    public BigInteger getM05_id() {
-        return m05_id;
-    }
-
-    public void setM05_id(BigInteger m05_id) {
-        this.m05_id = m05_id;
-    }
-
     public Double getJumlah() {
         return jumlah;
     }
 
     public void setJumlah(Double jumlah) {
         this.jumlah = jumlah;
+    }
+
+    public String getKd_tabung() {
+        return kd_tabung;
+    }
+
+    public void setKd_tabung(String kd_tabung) {
+        this.kd_tabung = kd_tabung;
+    }
+
+    public String getKdcust() {
+        return kdcust;
+    }
+
+    public void setKdcust(String kdcust) {
+        this.kdcust = kdcust;
     }
 
     public String getKeterangan() {
@@ -91,11 +82,11 @@ public class T01jual {
         this.keterangan = keterangan;
     }
 
-    public BigInteger getVersion() {
+    public Long getVersion() {
         return version;
     }
 
-    public void setVersion(BigInteger version) {
+    public void setVersion(Long version) {
         this.version = version;
     }
 

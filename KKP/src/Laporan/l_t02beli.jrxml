@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="l_t01jual" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2f30e744-9f10-438d-a30c-d5526ddd8847">
-	<property name="ireport.zoom" value="1.100000000000001"/>
+	<property name="ireport.zoom" value="1.331000000000001"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<queryString>
@@ -79,7 +79,7 @@ ON m05.m05_id = t01.m05_id;]]>
 				<textElement verticalAlignment="Middle">
 					<font size="8" isBold="true"/>
 				</textElement>
-				<text><![CDATA[LIST TRANSAKSI JUAL]]></text>
+				<text><![CDATA[LIST TRANSAKSI BELI]]></text>
 			</staticText>
 		</band>
 	</pageHeader>
@@ -114,7 +114,7 @@ ON m05.m05_id = t01.m05_id;]]>
 				<text><![CDATA[Jenis]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="194" y="0" width="40" height="20" uuid="c5b8203f-1151-4edd-88e9-da7b9f8c526b"/>
+				<reportElement x="194" y="0" width="42" height="20" uuid="c5b8203f-1151-4edd-88e9-da7b9f8c526b"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
@@ -142,7 +142,7 @@ ON m05.m05_id = t01.m05_id;]]>
 				<text><![CDATA[Jumlah]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="400" y="0" width="48" height="20" uuid="13b1b158-64f7-4a01-83ca-b66532b4c7a7"/>
+				<reportElement x="400" y="0" width="50" height="20" uuid="13b1b158-64f7-4a01-83ca-b66532b4c7a7"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
@@ -194,7 +194,7 @@ ON m05.m05_id = t01.m05_id;]]>
 				<textFieldExpression><![CDATA[$F{jenis_tabung}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0">
-				<reportElement x="194" y="0" width="40" height="20" uuid="784d5697-8357-4a75-bdec-fb1ae9582e6c"/>
+				<reportElement x="194" y="0" width="42" height="20" uuid="784d5697-8357-4a75-bdec-fb1ae9582e6c"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
 					<font size="8"/>
 				</textElement>
@@ -222,7 +222,7 @@ ON m05.m05_id = t01.m05_id;]]>
 				<textFieldExpression><![CDATA[$F{jumlah}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0">
-				<reportElement x="400" y="0" width="48" height="20" uuid="687625dd-d9a3-4877-b04d-dc8146bb3204"/>
+				<reportElement x="400" y="0" width="50" height="20" uuid="687625dd-d9a3-4877-b04d-dc8146bb3204"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
 					<font size="8"/>
 				</textElement>

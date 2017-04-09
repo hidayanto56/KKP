@@ -6,6 +6,16 @@
 package View;
 
 import Control.T01jualCtrl;
+import static java.awt.Color.red;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Formatter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.border.Border;
 
 /**
  *
@@ -14,23 +24,26 @@ import Control.T01jualCtrl;
 public class T01jualView extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form T01distView
+     * Creates new form T01jualView
      */
     public T01jualView() {
         initComponents();
+        txtID.setEditable(false);
+        txtTanggal.setText(new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
+//        txtTanggal.setBorder(;
         
         T01jualCtrl t01 = new T01jualCtrl();
-        tblDistJual.setModel(t01.getDaftarDistribusi());
+        tblDistJual.setModel(t01.getDaftarTransaksiJual());
 //        setEditStatus(false);
         setVisible(true);
         
         for (int i=0; i < t01.getKodeTabung().getRowCount(); i++){
             cmbKdTabung.addItem(t01.getKodeTabung().getValueAt(i, 0));
+            
         }
         for (int i=0; i < t01.getKodeCustomer().getRowCount(); i++){
             cmbKdCust.addItem(t01.getKodeCustomer().getValueAt(i, 0));
         }
-        
     }
 
     /**
@@ -42,15 +55,8 @@ public class T01jualView extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        entityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("kkp?zeroDateTimeBehavior=convertToNullPU").createEntityManager();
-        m03tabuQuery = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT m FROM M03tabu m");
-        m03tabuList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : m03tabuQuery.getResultList();
-        m05custQuery = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT m FROM M05cust m");
-        m05custList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : m05custQuery.getResultList();
-        m03tabuQuery1 = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT m FROM M03tabu m");
-        m03tabuList1 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : m03tabuQuery1.getResultList();
-        m05custQuery1 = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT m FROM M05cust m");
-        m05custList1 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : m05custQuery1.getResultList();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblDistJual = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         txtTanggal = new javax.swing.JTextField();
@@ -70,6 +76,8 @@ public class T01jualView extends javax.swing.JInternalFrame {
         cmbKdCust = new javax.swing.JComboBox();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtKeterangan = new javax.swing.JTextArea();
+        jLabel9 = new javax.swing.JLabel();
+        txtID = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         btnTambah = new javax.swing.JButton();
         btnCari = new javax.swing.JButton();
@@ -78,16 +86,32 @@ public class T01jualView extends javax.swing.JInternalFrame {
         btnPrint = new javax.swing.JButton();
         btnHapus = new javax.swing.JButton();
         btnBatal = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblDistJual = new javax.swing.JTable();
 
         setClosable(true);
-        setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1132, 600));
+
+        tblDistJual.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tblDistJual.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDistJualMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblDistJual);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel2.setPreferredSize(new java.awt.Dimension(270, 232));
 
+        txtTanggal.setToolTipText("DD-MM-YYYY");
         txtTanggal.setPreferredSize(new java.awt.Dimension(160, 20));
         txtTanggal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,21 +153,49 @@ public class T01jualView extends javax.swing.JInternalFrame {
 
         jLabel8.setText("Keterangan");
 
+        cmbKdTabung.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbKdTabungItemStateChanged(evt);
+            }
+        });
         cmbKdTabung.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbKdTabungActionPerformed(evt);
             }
         });
 
+        cmbKdCust.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbKdCustItemStateChanged(evt);
+            }
+        });
         cmbKdCust.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbKdCustActionPerformed(evt);
             }
         });
 
+        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
         txtKeterangan.setColumns(18);
         txtKeterangan.setRows(5);
         jScrollPane2.setViewportView(txtKeterangan);
+
+        jLabel9.setText("Kode");
+
+        txtID.setToolTipText("DD-MM-YYYY");
+        txtID.setPreferredSize(new java.awt.Dimension(160, 20));
+        txtID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIDActionPerformed(evt);
+            }
+        });
+        txtID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtIDKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -153,6 +205,10 @@ public class T01jualView extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(30, 30, 30)
+                        .addComponent(jScrollPane2))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
                             .addComponent(jLabel5)
@@ -160,26 +216,28 @@ public class T01jualView extends javax.swing.JInternalFrame {
                             .addComponent(jLabel3)
                             .addComponent(jLabel2)
                             .addComponent(jLabel1)
-                            .addComponent(jLabel7))
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel9))
                         .addGap(10, 10, 10)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtJumlah, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtTanggal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtHarga, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtNmTabung, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtNmCust, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cmbKdTabung, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cmbKdCust, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(30, 30, 30)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)))
+                            .addComponent(cmbKdCust, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtTanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -210,8 +268,8 @@ public class T01jualView extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(16, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -318,33 +376,20 @@ public class T01jualView extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 270, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17))
+                .addContainerGap())
         );
-
-        tblDistJual.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(tblDistJual);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -373,87 +418,8 @@ public class T01jualView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtTanggalActionPerformed
 
     private void txtTanggalKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTanggalKeyReleased
-        txtTanggal.setText(txtTanggal.getText().toUpperCase());
+//        txtTanggal.setText(txtTanggal.getText().toUpperCase());
     }//GEN-LAST:event_txtTanggalKeyReleased
-
-    private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
-//        if(!txtTanggal.getText().equals("") || !txtNmCust.getText().equals("")){
-//            T01 cb = new M05custCtrl();
-//            cb.setKdcust(txtTanggal.getText());
-//            cb.setNmcust(txtNmCust.getText());
-//            cb.setAlamat(txtNmTabung.getText());
-//            cb.setKota(txtHarga.getText());
-//            cb.setTelp(txtTelp.getText());
-//            cb.setKeterangan(txtNmCust.getText());
-//            cb.tambahCustomer();
-//
-//            btnClearActionPerformed(evt);
-//            tblCustomer.setModel(cb.getDaftarCustomer());
-//
-//        }else{
-//            JOptionPane.showInternalMessageDialog(this, "Kode Customer dan Nama Customer tidak boleh kosong", "Error", JOptionPane.INFORMATION_MESSAGE);
-//            //            JOptionPane.showInternalMessageDialog(null,
-//                //                    "Kode Customer dan Nama Customer harus diisi", "ERROR",
-//                //                    JOptionPane.INFORMATION_MESSAGE);
-//        }
-
-    }//GEN-LAST:event_btnTambahActionPerformed
-
-    private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
-//        M05custCtrl cbm = new M05custCtrl();
-//        cbm.setKdcust(txtTanggal.getText());
-//        cbm.setNmcust(txtNmCust.getText());
-//        //        cbm.setAlamat(txtMerek.getText());
-//        //        cbm.setSatuan(txtSatuan.getText());
-//        //        cbm.setHarga(Integer.parseInt(txtHarga.getText()));
-//        tblCustomer.setModel(cbm.getCariCustomer());
-    }//GEN-LAST:event_btnCariActionPerformed
-
-    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-//        M05custCtrl cb = new M05custCtrl();
-//        cb.setKdcust(txtTanggal.getText());
-//        cb.setNmcust(txtNmCust.getText());
-//        cb.setAlamat(txtNmTabung.getText());
-//        cb.setKota(txtHarga.getText());
-//        cb.setTelp(txtTelp.getText());
-//        cb.setKeterangan(txtNmCust.getText());
-//        cb.editCustomer();
-//
-//        setEditStatus(false);
-//        btnClearActionPerformed(evt);
-//
-//        M05custCtrl cb2 = new M05custCtrl();
-//        tblCustomer.setModel(cb2.getDaftarCustomer());
-    }//GEN-LAST:event_btnEditActionPerformed
-
-    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
-//        clearText();
-    }//GEN-LAST:event_btnClearActionPerformed
-
-    private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
-//        M05custCtrl cb = new M05custCtrl();
-//        cb.printCustomer();
-    }//GEN-LAST:event_btnPrintActionPerformed
-
-    private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
-//        M05custCtrl cb = new M05custCtrl();
-//        cb.setKdcust(txtTanggal.getText());
-//        cb.setNmcust(txtNmCust.getText());
-//        cb.hapusCustomer();
-//
-//        setHapusStatus(false);
-//        btnClearActionPerformed(evt);
-//
-//        M05custCtrl cb2 = new M05custCtrl();
-//        tblCustomer.setModel(cb2.getDaftarCustomer());
-    }//GEN-LAST:event_btnHapusActionPerformed
-
-    private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
-//        setEditStatus(false);
-//        btnClearActionPerformed(evt);
-//        M05custCtrl cb = new M05custCtrl();
-//        tblCustomer.setModel(cb.getDaftarCustomer());
-    }//GEN-LAST:event_btnBatalActionPerformed
 
     private void txtNmTabungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNmTabungActionPerformed
         // TODO add your handling code here:
@@ -467,6 +433,231 @@ public class T01jualView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbKdCustActionPerformed
 
+    private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
+        if (!txtTanggal.getText().equals("") || txtTanggal.getText() != null) {
+            T01jualCtrl cb = new T01jualCtrl();
+
+            String tanggal = txtTanggal.getText();
+            DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+            Date date = null;
+            try {
+                date = format.parse(tanggal);
+            } catch (ParseException ex) {
+                Logger.getLogger(T01jualView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            cb.setTanggal(date);
+            cb.setKd_tabung(cmbKdTabung.getSelectedItem().toString());
+            cb.setKdcust(cmbKdCust.getSelectedItem().toString());
+            if (txtJumlah.getText() != null) {
+                cb.setJumlah(Double.parseDouble(txtJumlah.getText()));
+            } else {
+                cb.setJumlah(new Double(0));
+            }
+            cb.setKeterangan(txtKeterangan.getText());
+            cb.tambahTransaksiJual();
+
+            btnClearActionPerformed(evt);
+            tblDistJual.setModel(cb.getDaftarTransaksiJual());
+
+        } else {
+            JOptionPane.showInternalMessageDialog(this, "Tanggal tidak boleh kosong", "Error",
+                    JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_btnTambahActionPerformed
+
+    private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
+        try {
+            T01jualCtrl cbm = new T01jualCtrl();
+
+            String tanggal = txtTanggal.getText();
+            DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+            Date date = format.parse(tanggal);
+
+            cbm.setTanggal((java.sql.Date) date);
+            cbm.setKd_tabung(cmbKdTabung.getSelectedItem().toString());
+            cbm.setKdcust(cmbKdCust.getSelectedItem().toString());
+                        //        cbm.setSatuan(txtSatuan.getText());
+            //        cbm.setHarga(Integer.parseInt(txtHarga.getText()));
+            tblDistJual.setModel(cbm.getCariTransaksiJual());
+        } catch (ParseException ex) {
+            Logger.getLogger(T01jualView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnCariActionPerformed
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+                T01jualCtrl cb = new T01jualCtrl();
+                String tanggal = txtTanggal.getText();
+                        DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+                        Date date = null;
+        try {
+            date = format.parse(tanggal);
+        } catch (ParseException ex) {
+            Logger.getLogger(T01jualView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+                cb.setTanggal((java.sql.Date) date);
+                cb.setKd_tabung(cmbKdTabung.getSelectedItem().toString());
+                cb.setKdcust(cmbKdCust.getSelectedItem().toString());
+                cb.setJumlah(Double.valueOf(txtJumlah.getText()));
+                cb.setKeterangan(txtNmCust.getText());
+                cb.editPenjualan();
+        
+                setEditStatus(false);
+                btnClearActionPerformed(evt);
+        
+                T01jualCtrl cb2 = new T01jualCtrl();
+                tblDistJual.setModel(cb2.getDaftarTransaksiJual());
+    }//GEN-LAST:event_btnEditActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+                clearText();
+    }//GEN-LAST:event_btnClearActionPerformed
+
+    private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
+                T01jualCtrl cb = new T01jualCtrl();
+                cb.printPenjualan();
+    }//GEN-LAST:event_btnPrintActionPerformed
+
+    private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
+                T01jualCtrl cb = new T01jualCtrl();
+                cb.setT01_id(Long.parseLong(txtID.getText()));
+                cb.hapusPenjualan();
+        
+                setHapusStatus(false);
+                btnClearActionPerformed(evt);
+        
+                T01jualCtrl cb2 = new T01jualCtrl();
+                tblDistJual.setModel(cb2.getDaftarTransaksiJual());
+    }//GEN-LAST:event_btnHapusActionPerformed
+
+    private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
+                setEditStatus(false);
+                btnClearActionPerformed(evt);
+                T01jualCtrl cb = new T01jualCtrl();
+                tblDistJual.setModel(cb.getDaftarTransaksiJual());
+    }//GEN-LAST:event_btnBatalActionPerformed
+
+    private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIDActionPerformed
+
+    private void txtIDKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIDKeyReleased
+
+    private void cmbKdTabungItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbKdTabungItemStateChanged
+        T01jualCtrl t01 = new T01jualCtrl();
+        t01.setKd_tabung(cmbKdTabung.getSelectedItem().toString());
+        t01.getTabung();
+        
+        txtNmTabung.setText(t01.getTabung().getValueAt(0, 1).toString());
+        txtHarga.setText(t01.getTabung().getValueAt(0, 2).toString());
+        
+    }//GEN-LAST:event_cmbKdTabungItemStateChanged
+
+    private void cmbKdCustItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbKdCustItemStateChanged
+        T01jualCtrl t01 = new T01jualCtrl();
+        t01.setKdcust(cmbKdCust.getSelectedItem().toString());
+        t01.getCustomer();
+        
+        txtNmCust.setText(t01.getCustomer().getValueAt(0, 1).toString());
+    }//GEN-LAST:event_cmbKdCustItemStateChanged
+
+    private void tblDistJualMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDistJualMouseClicked
+        int tableData = tblDistJual.getSelectedRow();
+        txtID.setText(tblDistJual.getValueAt(tableData, 0).toString());
+        txtTanggal.setText(tblDistJual.getValueAt(tableData, 1).toString());
+        cmbKdTabung.setSelectedItem(tblDistJual.getValueAt(tableData, 2).toString());
+        txtNmTabung.setText(tblDistJual.getValueAt(tableData, 3).toString());
+        txtHarga.setText(tblDistJual.getValueAt(tableData, 4).toString());
+        cmbKdCust.setSelectedItem(tblDistJual.getValueAt(tableData, 5).toString());
+        txtNmCust.setText(tblDistJual.getValueAt(tableData, 6).toString());
+        txtJumlah.setText(tblDistJual.getValueAt(tableData, 7).toString());
+        txtKeterangan.setText(tblDistJual.getValueAt(tableData, 8).toString());
+       
+                setEditStatus(false);
+    }//GEN-LAST:event_tblDistJualMouseClicked
+
+    private void setEditStatus(boolean status) {
+        if (status == false) {
+            btnCari.setEnabled(true);
+            btnTambah.setEnabled(true);
+            btnHapus.setEnabled(true);
+            btnEdit.setEnabled(false);
+            btnBatal.setEnabled(true);
+            txtTanggal.setEditable(false);
+            cmbKdTabung.setEnabled(false);
+            txtNmTabung.setEditable(false);
+            txtHarga.setEditable(false);
+            cmbKdCust.setEnabled(false);
+            txtNmCust.setEditable(false);
+            txtJumlah.setEditable(false);
+            txtKeterangan.setEditable(false);
+            
+        } else {
+            btnCari.setEnabled(false);
+            btnTambah.setEnabled(false);
+            btnHapus.setEnabled(true);
+            btnEdit.setEnabled(true);
+            btnBatal.setEnabled(true);
+            txtTanggal.setEditable(true);
+            cmbKdTabung.setEnabled(true);
+            txtNmTabung.setEditable(true);
+            txtHarga.setEditable(true);
+            cmbKdCust.setEnabled(true);
+            txtNmCust.setEditable(true);
+            txtJumlah.setEditable(false);
+            txtKeterangan.setEditable(false);
+            
+        }
+    }
+    
+    private void clearText() {
+        txtID.setText("");
+        txtTanggal.setText(new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
+        txtNmTabung.setText("");
+        txtHarga.setText("");
+        txtNmCust.setText("");
+        txtJumlah.setText("");
+        txtKeterangan.setText("");
+    }
+    
+    private void setHapusStatus(boolean status) {
+        if (status == false) {
+            btnCari.setEnabled(true);
+            btnTambah.setEnabled(true);
+            btnClear.setEnabled(true);
+            btnEdit.setEnabled(false);
+            btnHapus.setEnabled(false);
+            btnBatal.setEnabled(false);
+            txtTanggal.setEditable(true);
+            cmbKdTabung.setEnabled(true);
+            txtNmTabung.setEditable(true);
+            txtHarga.setEditable(true);
+            cmbKdCust.setEnabled(true);
+            txtNmCust.setEditable(true);
+            txtJumlah.setEditable(true);
+            txtKeterangan.setEditable(true);
+            
+        } else {
+            btnCari.setEnabled(false);
+            btnTambah.setEnabled(false);
+            btnClear.setEnabled(false);
+            btnEdit.setEnabled(true);
+            btnHapus.setEnabled(true);
+            btnBatal.setEnabled(true);
+            txtTanggal.setEditable(false);
+            cmbKdTabung.setEnabled(false);
+            txtNmTabung.setEditable(false);
+            txtHarga.setEditable(false);
+            cmbKdCust.setEnabled(false);
+            txtNmCust.setEditable(false);
+            txtJumlah.setEditable(false);
+            txtKeterangan.setEditable(false);
+            
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBatal;
@@ -478,7 +669,6 @@ public class T01jualView extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnTambah;
     private javax.swing.JComboBox cmbKdCust;
     private javax.swing.JComboBox cmbKdTabung;
-    private javax.persistence.EntityManager entityManager;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -487,21 +677,15 @@ public class T01jualView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private java.util.List<View.M03tabu> m03tabuList;
-    private java.util.List<View.M03tabu> m03tabuList1;
-    private javax.persistence.Query m03tabuQuery;
-    private javax.persistence.Query m03tabuQuery1;
-    private java.util.List<View.M05cust> m05custList;
-    private java.util.List<View.M05cust> m05custList1;
-    private javax.persistence.Query m05custQuery;
-    private javax.persistence.Query m05custQuery1;
     private javax.swing.JTable tblDistJual;
     private javax.swing.JTextField txtHarga;
+    private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtJumlah;
     private javax.swing.JTextArea txtKeterangan;
     private javax.swing.JTextField txtNmCust;

@@ -34,7 +34,7 @@ CREATE TABLE `m01pega` (
   `tgllahir` date DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
   `tglmasuk` date DEFAULT NULL,
-  `kdjab` varchar(6) DEFAULT NULL,
+  `m02_id` bigint(20) DEFAULT NULL,
   `version` bigint(20) DEFAULT NULL,
   `created_by` varchar(20) DEFAULT NULL,
   `created_on` datetime DEFAULT NULL,
@@ -42,13 +42,11 @@ CREATE TABLE `m01pega` (
   `updated_on` datetime DEFAULT NULL,
   PRIMARY KEY (`m01_id`,`nik`),
   UNIQUE KEY `nik` (`nik`),
-  KEY `kdjab` (`kdjab`),
-  CONSTRAINT `m01pega_ibfk_1` FOREIGN KEY (`kdjab`) REFERENCES `m02jaba` (`kdjab`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  KEY `m02_id` (`m02_id`),
+  CONSTRAINT `m02_id` FOREIGN KEY (`m02_id`) REFERENCES `m02jaba` (`m02_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `m01pega` */
-
-insert  into `m01pega`(`m01_id`,`nik`,`nama`,`username`,`password`,`gender`,`status`,`telepon`,`alamat`,`agama`,`tgllahir`,`email`,`tglmasuk`,`kdjab`,`version`,`created_by`,`created_on`,`updated_by`,`updated_on`) values (1,'A001','Admin','a','a','L','a','0873465837','admin','admin',NULL,NULL,NULL,'admin',NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `m02jaba` */
 
@@ -66,11 +64,9 @@ CREATE TABLE `m02jaba` (
   `updated_on` datetime DEFAULT NULL,
   PRIMARY KEY (`m02_id`,`kdjab`),
   UNIQUE KEY `kdjab` (`kdjab`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin2;
+) ENGINE=InnoDB DEFAULT CHARSET=latin2;
 
 /*Data for the table `m02jaba` */
-
-insert  into `m02jaba`(`m02_id`,`kdjab`,`nmjab`,`keterangan`,`version`,`created_by`,`created_on`,`updated_by`,`updated_on`) values (1,'admin','admin','admin',NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `m03tabu` */
 
@@ -177,11 +173,11 @@ insert  into `p01peru`(`kdperu`,`nmperu`,`alamat`,`kota`,`telp1`,`telp2`,`email`
 DROP TABLE IF EXISTS `t01jual`;
 
 CREATE TABLE `t01jual` (
-  `t01_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `t01_id` bigint(20) NOT NULL,
   `tanggal` date NOT NULL,
-  `kd_tabung` varchar(5) NOT NULL,
-  `kdcust` varchar(10) NOT NULL,
-  `jumlah` int(17) NOT NULL,
+  `m03_id` bigint(20) NOT NULL,
+  `m05_id` bigint(20) NOT NULL,
+  `jumlah` decimal(8,0) DEFAULT NULL,
   `keterangan` varchar(255) DEFAULT NULL,
   `version` bigint(20) DEFAULT NULL,
   `created_by` varchar(20) DEFAULT NULL,
@@ -189,13 +185,15 @@ CREATE TABLE `t01jual` (
   `updated_by` varchar(20) DEFAULT NULL,
   `updated_on` datetime DEFAULT NULL,
   PRIMARY KEY (`t01_id`),
-  KEY `kd_tabung` (`kd_tabung`),
-  KEY `kdcust` (`kdcust`),
-  CONSTRAINT `t01jual_ibfk_1` FOREIGN KEY (`kd_tabung`) REFERENCES `m03tabu` (`kd_tabung`),
-  CONSTRAINT `t01jual_ibfk_2` FOREIGN KEY (`kdcust`) REFERENCES `m05cust` (`kdcust`)
+  KEY `m03_id` (`m03_id`),
+  KEY `m05_id` (`m05_id`),
+  CONSTRAINT `m03_id` FOREIGN KEY (`m03_id`) REFERENCES `m03tabu` (`m03_id`),
+  CONSTRAINT `m05_id` FOREIGN KEY (`m05_id`) REFERENCES `m05cust` (`m05_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `t01jual` */
+
+insert  into `t01jual`(`t01_id`,`tanggal`,`m03_id`,`m05_id`,`jumlah`,`keterangan`,`version`,`created_by`,`created_on`,`updated_by`,`updated_on`) values (0,'2016-10-31',1,1,'10',NULL,NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `t02beli` */
 
@@ -204,45 +202,25 @@ DROP TABLE IF EXISTS `t02beli`;
 CREATE TABLE `t02beli` (
   `t02_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `tanggal` date NOT NULL,
-  `kd_tabung` varchar(5) NOT NULL,
-  `kdsupl` varchar(10) NOT NULL,
-  `jumlah` int(17) NOT NULL,
+  `m03_id` bigint(20) NOT NULL,
+  `m04_id` bigint(20) NOT NULL,
+  `jumlah` bigint(20) DEFAULT NULL,
   `keterangan` varchar(255) DEFAULT NULL,
   `version` bigint(20) DEFAULT NULL,
   `created_by` varchar(20) DEFAULT NULL,
-  `created_on` datetime DEFAULT NULL,
+  `created_on` date DEFAULT NULL,
   `updated_by` varchar(20) DEFAULT NULL,
-  `updated_on` datetime DEFAULT NULL,
+  `updated_on` date DEFAULT NULL,
   PRIMARY KEY (`t02_id`),
-  KEY `kd_tabung` (`kd_tabung`),
-  KEY `kdsupl` (`kdsupl`),
-  CONSTRAINT `t02beli_ibfk_1` FOREIGN KEY (`kd_tabung`) REFERENCES `m03tabu` (`kd_tabung`),
-  CONSTRAINT `t02beli_ibfk_2` FOREIGN KEY (`kdsupl`) REFERENCES `m04supl` (`kdsup`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  KEY `m03_id` (`m03_id`),
+  KEY `m04_id` (`m04_id`),
+  CONSTRAINT `t02beli_ibfk_1` FOREIGN KEY (`m03_id`) REFERENCES `m03tabu` (`m03_id`),
+  CONSTRAINT `t02beli_ibfk_2` FOREIGN KEY (`m04_id`) REFERENCES `m04supl` (`m04_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `t02beli` */
 
-/*Table structure for table `t03stok` */
-
-DROP TABLE IF EXISTS `t03stok`;
-
-CREATE TABLE `t03stok` (
-  `t03_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `tanggal` date NOT NULL,
-  `kd_tabung` varchar(5) NOT NULL,
-  `jumlah` int(17) NOT NULL,
-  `keterangan` varchar(255) DEFAULT NULL,
-  `version` bigint(20) DEFAULT NULL,
-  `created_by` varchar(20) DEFAULT NULL,
-  `created_on` datetime DEFAULT NULL,
-  `updated_by` varchar(20) DEFAULT NULL,
-  `updated_on` datetime DEFAULT NULL,
-  PRIMARY KEY (`t03_id`),
-  KEY `kd_tabung` (`kd_tabung`),
-  CONSTRAINT `t03stok_ibfk_1` FOREIGN KEY (`kd_tabung`) REFERENCES `m03tabu` (`kd_tabung`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-/*Data for the table `t03stok` */
+insert  into `t02beli`(`t02_id`,`tanggal`,`m03_id`,`m04_id`,`jumlah`,`keterangan`,`version`,`created_by`,`created_on`,`updated_by`,`updated_on`) values (1,'2016-11-01',1,1,1000,NULL,NULL,NULL,NULL,NULL,NULL);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
